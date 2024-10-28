@@ -1,0 +1,50 @@
+.left-sidebar {
+	z-index: 10;
+	position: sticky;
+	top: 0;
+	left: 0;
+	min-width: 200px;
+	max-width: 200px;
+	height: 100vh;
+}
+
+.left-sidebar .logo {
+	height: 20%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #5A81C4;
+	color: white; 
+}
+
+.left-sidebar .logo * {
+	margin: 0;
+}
+
+.left-sidebar .button-container {
+	width: 100%;
+	height: 70%;
+	padding: 2em 2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background: #A4C5FD;
+}
+
+.left-sidebar .logout {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+	height: 10%;
+	background: #5A81C4;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.left-sidebar .logout img {
+	max-height: 50%;
+}

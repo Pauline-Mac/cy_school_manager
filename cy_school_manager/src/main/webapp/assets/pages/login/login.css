@@ -1,0 +1,28 @@
+.login-main {
+	width: 100%;
+	padding: 1em;
+	color: black;
+}
+
+.login-main .title {
+	text-align: center;
+}
+
+.login-main .form-row {
+    padding: 3% 5%;
+    gap: 10%;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.login-main .image-container {
+    height: 100%;
+}
+
+.login-main .image-container .img_1 {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	border-radius: 10px;
+}

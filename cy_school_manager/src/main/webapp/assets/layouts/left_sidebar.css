@@ -1,0 +1,12 @@
+.layout {
+	display: flex;
+}
+
+.container {
+	width: 100%;
+	color: black;
+}
+
+.inner-container {
+	margin: 5em 2em;
+}
