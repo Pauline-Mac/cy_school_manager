@@ -1,0 +1,26 @@
+.users-main {
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.users-main .users-table {
+	table-layout: fixed;
+	width: 100%;
+	height: 15em;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+.users-main .users-table th, td {
+  border: 1px solid;
+}
+
+.users-main .users-table tr:nth-child(odd) {
+  background-color: #FFFFFF;
+}
+
+.users-main .users-table tr:nth-child(even) {
+  background-color: #F5F5F5;
+}

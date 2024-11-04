@@ -1,0 +1,32 @@
+.root-header {
+	z-index: 10;
+	position: sticky;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	padding: 10px 20px;
+	border-top: solid #5A81C4 20px;
+	background-color: #FAFAFA;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.root-main {
+	width: 100%;
+	padding: 50px;
+	color: black;
+}
+
+.root-main .title {
+	text-align: center;
+	margin-top: 0;
+	margin-bottom: 50px;
+}
+
+.root-main .img_1 {
+	display: block;
+	margin: 0 auto;
+	height: 400px;
+	border-radius: 20px; 
+}

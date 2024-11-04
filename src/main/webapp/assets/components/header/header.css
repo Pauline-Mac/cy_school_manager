@@ -1,0 +1,46 @@
+.root-header {
+	z-index: 10;
+	position: sticky;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	padding: 10px 40px;
+	border-top: solid #5A81C4 20px;
+	background-color: #FAFAFA;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.root-header .logo {
+	position: sticky;
+	top: 0px;
+	left: 0px;
+	margin: 0px;
+	text-align: center;
+}
+
+.root-header .logo a {
+	color: black
+}
+
+.root-nav {
+	height: 1em;
+	width: 70%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.root-nav .item {
+	color: black;
+	text-decoration: none;
+}
+
+.root-nav .item:hover {
+	color: #606060;
+}
+
+.root-header .login{
+	width: 10%;
+}
