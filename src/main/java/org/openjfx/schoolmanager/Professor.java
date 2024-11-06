@@ -4,22 +4,23 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
+
 @Entity
-@Table(name = "student")
-public class Student {
+@Table(name = "professor")
+public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_id")
-    private Long studentId;
+    @Column(name = "professor_id")
+    private Long professorId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "student_group_id", nullable = false)
-    private StudentGroup studentGroup;
+    @JoinColumn(name = "note_note_id", nullable = false)
+    private Note note;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -29,12 +30,12 @@ public class Student {
 
     // Getters et setters
 
-    public Long getStudentId() {
-        return studentId;
+    public Long getProfessorId() {
+        return professorId;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public void setProfessorId(Long professorId) {
+        this.professorId = professorId;
     }
 
     public User getUser() {
@@ -45,12 +46,12 @@ public class Student {
         this.user = user;
     }
 
-    public StudentGroup getStudentGroup() {
-        return studentGroup;
+    public Note getNote() {
+        return note;
     }
 
-    public void setStudentGroup(StudentGroup studentGroup) {
-        this.studentGroup = studentGroup;
+    public void setNote(Note note) {
+        this.note = note;
     }
 
     public Date getCreatedAt() {

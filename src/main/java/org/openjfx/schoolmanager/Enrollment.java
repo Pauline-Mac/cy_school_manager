@@ -1,19 +1,21 @@
 package org.openjfx.schoolmanager;
 
 import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity
-@Table(name = "student_group")
-public class StudentGroup {
+@Table(name = "enrollment")
+public class Enrollment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_group_id")
-    private Long studentGroupId;
+    @Column(name = "enrollment_id")
+    private Long enrollmentId;
 
-    @Column(name = "student_group_name", nullable = false)
-    private String studentGroupName;
+    @ManyToOne
+    @JoinColumn(name = "student_id", nullable = false)
+    private Student student;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -23,20 +25,20 @@ public class StudentGroup {
 
     // Getters et setters
 
-    public Long getStudentGroupId() {
-        return studentGroupId;
+    public Long getEnrollmentId() {
+        return enrollmentId;
     }
 
-    public void setStudentGroupId(Long studentGroupId) {
-        this.studentGroupId = studentGroupId;
+    public void setEnrollmentId(Long enrollmentId) {
+        this.enrollmentId = enrollmentId;
     }
 
-    public String getStudentGroupName() {
-        return studentGroupName;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentGroupName(String studentGroupName) {
-        this.studentGroupName = studentGroupName;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Date getCreatedAt() {

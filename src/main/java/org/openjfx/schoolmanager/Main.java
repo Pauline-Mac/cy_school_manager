@@ -11,9 +11,9 @@ public class Main {
         // Configuration de Hibernate
         SessionFactory sessionFactory = new Configuration()
                 .configure("hibernate.cfg.xml") // Charge la configuration
-                .addAnnotatedClass(Student.class) // Ajoute la classe Student
                 .buildSessionFactory();
 
+        /*
         // Ouverture d'une session
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
@@ -29,13 +29,13 @@ public class Main {
             // Commit de la transaction
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
+           if (transaction != null) {
                 transaction.rollback(); // Rollback en cas d'erreur
             }
             e.printStackTrace();
         } finally {
             session.close(); // Ferme la session
             sessionFactory.close(); // Ferme le session factory
-        }
+        } */
     }
 }
