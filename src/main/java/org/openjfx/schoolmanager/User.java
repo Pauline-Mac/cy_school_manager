@@ -42,6 +42,9 @@ public class User {
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    @Column(name = "role", nullable = false)
+    private String role; // Ex: "STUDENT", "PROFESSOR", "ADMIN"
+
     // Getters et setters
 
     public Long getUserId() {
@@ -130,5 +133,13 @@ public class User {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

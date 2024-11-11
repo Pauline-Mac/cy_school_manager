@@ -1,10 +1,10 @@
-<form class="login-form" action="j_security_check" method="POST">
+<form class="login-form" action="${pageContext.request.contextPath}/login" method="POST">
 	<div class="login-form-container">
 		<h2 class="title">Connectez-vous :</h2>
 		<input
 			type="email"
 			id="email"
-			name="j_username"
+			name="email"
 			placeholder="Adresse e-mail"
 			required 
 		>
@@ -12,7 +12,7 @@
 		<input 
   			type="password"
   			id="password"
-  			name="j_password"
+  			name="password"
   			placeholder="Mot de passe"
   			required
 		>
@@ -23,6 +23,6 @@
 		<br>
 		<hr>
 		<br>
-		<a href="admin/login.jsp"><div class="button">Nouveau compte</div></a>
+		<a href="admin/signup.jsp"><div class="button">Nouveau compte</div></a>
 	</div>
 </form>

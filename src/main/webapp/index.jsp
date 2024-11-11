@@ -16,7 +16,7 @@
 <jsp:include page="/assets/components/header/header.jsp"/>
 
 <main class="root-main">
-    <h1 class="title">Gerez votre scolarité en un seul click !</h1>
+    <h1 class="title">Gerez votre scolarit&eacute; en un seul click !</h1>
     <img class = "img_1" alt="CY TECH" src="https://cytech.cyu.fr/medias/photo/20210910-142739-1-_1658393597514-jpg?ID_FICHE=111566">
 </main>
 
