@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("user", email);
 			request.getSession().setAttribute("role", user.getRole());
 			response.sendRedirect("admin/index");
-			System.out.println("Authentication check user role is" + request.getSession().getAttribute("role"));
+			System.out.println("Authentication check user role is " + request.getSession().getAttribute("role"));
 		} else {
 			request.setAttribute("errorMessage", "Incorrect email or password");
 			request.getRequestDispatcher("admin/index").forward(request, response);
