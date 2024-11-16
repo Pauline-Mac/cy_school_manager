@@ -36,3 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Gmail API ###
+src/main/resources/client_secrets.json
