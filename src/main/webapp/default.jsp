@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>CY School Manager</title>
 	<link href="default.css" rel="stylesheet" type="text/css">
-<<<<<<< HEAD
+
 	<link href="${pageContext.request.contextPath}/assets/global/global.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/pages/login/login.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/components/button/button.css" rel="stylesheet" type="text/css">
