@@ -19,7 +19,7 @@
 		<br><br>
 		<input class="button" type="submit" value="Connexion">
 		<br>
-		<a class="lost-password" href="">Mot de passe oublié ?</a>
+		<a class="lost-password" href="">Mot de passe oubliï¿½ ?</a>
 		<br>
 		<hr>
 		<br>

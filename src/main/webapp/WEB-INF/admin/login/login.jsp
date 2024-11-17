@@ -1,15 +1,16 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>CY School Manager</title>
+<<<<<<< HEAD
 	<link href="${pageContext.request.contextPath}/assets/global/global.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/pages/login/login.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/components/login_form/login_form.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/components/button/button.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/components/header/header.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/components/footer/footer.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 	<jsp:include page='/assets/components/header/header.jsp'/>
