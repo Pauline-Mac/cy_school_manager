@@ -1,16 +1,16 @@
-<%@ include file='/WEB-INF/config/initializers/init.jsp' %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>CY School Manager</title>
-	<link href="<c:url value='${global_css_path}'/>" rel="stylesheet" type="text/css">
-	<link href="<c:url value='${layouts_css_path}/left_sidebar.css'/>" rel="stylesheet" type="text/css">
-	<link href="<c:url value='${pages_css_path}/admin/index/index.css'/>" rel="stylesheet" type="text/css">
-	<link href="<c:url value='${components_css_path}/button/button.css'/>" rel="stylesheet" type="text/css">
-	<link href="<c:url value='${components_css_path}/admin/header/header.css'/>" rel="stylesheet" type="text/css">
-	<link href="<c:url value='${components_css_path}/admin/left_sidebar/left_sidebar.css'/>" rel="stylesheet" type="text/css">
-	<link href="<c:url value='${components_css_path}/footer/footer.css'/>" rel="stylesheet" type="text/css">
+
+	<link href="${pageContext.request.contextPath}/assets/global/global.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/layouts/left_sidebar.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/layouts/admin/index/index.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/components/button/button.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/components/admin/header/header.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/components/admin/left_sidebar/left_sidebar.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/components/footer/footer.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="layout">

@@ -1,4 +1,3 @@
-<%@ include file='/WEB-INF/config/initializers/init.jsp' %>
 <!DOCTYPE html>
 <html>
 <head>
