@@ -7,8 +7,8 @@
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cy_school_manager</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">cytech0001</property>
+        <property name="hibernate.connection.username">${DB_USERNAME}</property>
+        <property name="hibernate.connection.password">${DB_PASSWORD}</property>
 
         <!-- JDBC connection pool settings -->
         <property name="hibernate.c3p0.min_size">5</property>
