@@ -1,6 +1,8 @@
-<footer class="root-footer">
+<footer class="footer">
 	<ul>
 		<li>Github</li>
-		<li>Contrubutors</li>
+		<li>Contributors</li>
+		<li>Contributors</li>
+		<li>Contributors</li>
 	</ul>	
 </footer>

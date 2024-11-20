@@ -1,0 +1,7 @@
+.dash-item {
+	background: white;
+	padding: 2em;
+	width: 20em;
+	border: solid grey 1px;
+	border-radius: 10px;
+}

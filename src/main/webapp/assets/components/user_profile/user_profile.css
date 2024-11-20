@@ -1,0 +1,19 @@
+.user-profile {
+	background: white;
+	padding: 2em;
+	width: 100%;
+	border: solid grey 1px;
+	border-radius: 10px;
+}
+
+.user-profile .user-data {
+	display: block;
+}
+
+.user-profile .user-data .user-data-label {
+	font-weight: 700;
+}
+
+.user-profile .user-data .user-data-input {
+	font-weight: 700;
+}
