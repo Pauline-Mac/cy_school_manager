@@ -6,78 +6,32 @@
     <display-name>cy_school_manager</display-name>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
-        <welcome-file>index.html</welcome-file>
-        <welcome-file>index.htm</welcome-file>
-        <welcome-file>default.html</welcome-file>
-        <welcome-file>default.jsp</welcome-file>
-        <welcome-file>default.htm</welcome-file>
     </welcome-file-list>
-    <session-config>
-        <session-timeout>5</session-timeout>
-    </session-config>
-
-    <security-role>
-        <role-name>admin</role-name>
-    </security-role>
-
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Project Web Access</web-resource-name>
-            <url-pattern>/admin/*</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-        </web-resource-collection>
-
-        <auth-constraint>
-            <role-name>admin</role-name>
-        </auth-constraint>
-
-    </security-constraint>
-
-
-
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Project Web Access</web-resource-name>
-            <url-pattern>/professor/*</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-        </web-resource-collection>
-
-
-
-    </security-constraint>
-
-    <security-role>
-        <role-name>student</role-name>
-    </security-role>
-
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Project Web Access</web-resource-name>
-            <url-pattern>/student/*</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-        </web-resource-collection>
-
-        <auth-constraint>
-            <role-name>student</role-name>
-        </auth-constraint>
-
-    </security-constraint>
-
-    <login-config>
-        <auth-method>FORM</auth-method>
-        <form-login-config>
-            <form-login-page>/WEB-INF/admin/login/login.jsp</form-login-page>
-            <form-error-page>/WEB-INF/admin/login/login_failed.jsp</form-error-page>
-        </form-login-config>
-    </login-config>
 
     <!-- Routes -->
+    <!-- SERVLET NAMES MUST BE UNIQUE -->
+    <!--
+        To add a route :
+            First, declare your <servlet>
+            Second, declare his <servlet-mapping>
+
+        /!\ A servlet may have multiple servlet-mappings
+
+        Example :
+                <servlet>
+                    <servlet-name>MyServlet</servlet-name>
+                    <servlet-class>my.servlet.path</servlet-class>
+                </servlet>
+
+                <servlet-mapping>
+                    <servlet-name>MyServlet</servlet-name> // This links the servlet you declared before
+                    <url-pattern>/my/servlet/url</url-pattern>
+                </servlet-mapping>
+    -->
+
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>org.openjfx.views.admin.Login</servlet-class>
+        <servlet-class>views.Login</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -86,29 +40,42 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Index</servlet-name>
-        <servlet-class>org.openjfx.views.admin.Index</servlet-class>
+        <servlet-name>AdminIndex</servlet-name>
+        <servlet-class>views.admin.AdminIndex</servlet-class>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>Index</servlet-name>
+        <servlet-name>AdminIndex</servlet-name>
         <url-pattern>/admin/index</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Students</servlet-name>
-        <servlet-class>org.openjfx.views.admin.Students</servlet-class>
+        <servlet-name>AdminProfile</servlet-name>
+        <servlet-class>views.admin.AdminProfile</servlet-class>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>Students</servlet-name>
-        <url-pattern>/admin/students</url-pattern>
+        <servlet-name>AdminProfile</servlet-name>
+        <url-pattern>/admin/profile</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Professors</servlet-name>
-        <servlet-class>org.openjfx.views.admin.Professors</servlet-class>
+        <servlet-name>AdminProfessors</servlet-name>
+        <servlet-class>views.admin.AdminProfessors</servlet-class>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>Professors</servlet-name>
+        <servlet-name>AdminProfessors</servlet-name>
         <url-pattern>/admin/professors</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminStudents</servlet-name>
+        <servlet-class>views.admin.AdminStudents</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminStudents</servlet-name>
+        <url-pattern>/admin/students</url-pattern>
     </servlet-mapping>
 </web-app>

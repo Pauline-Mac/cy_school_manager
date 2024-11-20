@@ -5,11 +5,11 @@
              version="3.0">
     <persistence-unit name="default">
 
-        <class>org.openjfx.schoolmanager.StudentGroup</class>
-        <class>org.openjfx.schoolmanager.User</class>
-        <class>org.openjfx.schoolmanager.Enrollment</class>
-        <class>org.openjfx.schoolmanager.Note</class>
-        <class>org.openjfx.schoolmanager.Professor</class>
-        <class>org.openjfx.schoolmanager.Course</class>
+        <class>models.StudentGroup</class>
+        <class>models.User</class>
+        <class>models.Enrollment</class>
+        <class>models.Note</class>
+        <class>models.Professor</class>
+        <class>models.Course</class>
     </persistence-unit>
 </persistence>

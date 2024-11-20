@@ -1,6 +1,10 @@
+.index-main {
+	padding: 2em;
+}
+
 .img_1 {
 	display: block;
-	margin: 0 auto;
-	height: 400px;
+	margin: 2em auto;
+	height: 350px;
 	border-radius: 20px; 
 }

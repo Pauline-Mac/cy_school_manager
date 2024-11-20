@@ -1,0 +1,11 @@
+.user-manager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-actions {
+	background: red;
+	padding: 2em;
+	height: 100%;
+}

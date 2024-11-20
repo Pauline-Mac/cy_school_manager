@@ -18,18 +18,18 @@
         <property name="hibernate.current_session_context_class">thread</property>
 
         <!-- Echo all executed SQL to stdout -->
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
 
         <!-- Drop and re-create the database schema on startup -->
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Mappage des entités -->
-        <mapping class="org.openjfx.schoolmanager.Student"/>
-        <mapping class="org.openjfx.schoolmanager.Course"/>
-        <mapping class="org.openjfx.schoolmanager.Enrollment"/>
-        <mapping class="org.openjfx.schoolmanager.StudentGroup"/>
-        <mapping class="org.openjfx.schoolmanager.Note"/>
-        <mapping class="org.openjfx.schoolmanager.Professor"/>
-        <mapping class="org.openjfx.schoolmanager.User"/>
+        <mapping class="models.Student"/>
+        <mapping class="models.Course"/>
+        <mapping class="models.Enrollment"/>
+        <mapping class="models.StudentGroup"/>
+        <mapping class="models.Note"/>
+        <mapping class="models.Professor"/>
+        <mapping class="models.User"/>
     </session-factory>
 </hibernate-configuration>
