@@ -5,7 +5,7 @@
 	<title>CY School Manager</title>
 
 	<link href="${pageContext.request.contextPath}/assets/global/global.css" rel="stylesheet" type="text/css">
-	<link href="${pageContext.request.contextPath}/assets/layouts/left_sidebar.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/layouts/admin_left_sidebar.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/pages/admin/users/users.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/components/button/button.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/components/admin/header/header.css" rel="stylesheet" type="text/css">
@@ -22,8 +22,10 @@
 			<jsp:include page='/assets/components/admin/header/header.jsp'/>
 			
 			<div class="inner-container">
-				<h1>Etudiants</h1>
-				<jsp:include page='/assets/components/admin/users_table/users_table.jsp'/>
+				<main class="users-main">
+					<h1>Etudiants</h1>
+					<jsp:include page='/assets/components/admin/users_table/users_table.jsp'/>
+				</main>
 			</div>
 			
 			<jsp:include page='/assets/components/footer/footer.jsp'/>
