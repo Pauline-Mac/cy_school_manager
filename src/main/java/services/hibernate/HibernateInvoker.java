@@ -1,8 +1,10 @@
 package services.hibernate;
 
 import models.HibernateEntity;
+import models.Student;
 import services.hibernate.commands.*;
 
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -12,8 +14,18 @@ import java.util.List;
 public class HibernateInvoker {
     HibernateCommand command;
 
-    public HibernateEntity add(HibernateEntity entity) {return (HibernateEntity) executeCommand(new Add(entity));}
 
+    public Student createStudent(String email, String password, String lastName, String firstName, Date birthDate, String phone, String studentGroupName) {
+        Create createCommand = new Create();
+        Student student = createCommand.createStudent(email, password, lastName, firstName, birthDate, phone, studentGroupName);
+        return student;
+    }
+
+
+    public void saveStudent(Student student) {
+        Save saveCommand = new Save(student);
+        executeCommand(saveCommand);
+    }
 
     public HibernateFacade get(Class clazz, Integer id) {
         return (HibernateFacade) executeCommand(new Get(clazz, id));

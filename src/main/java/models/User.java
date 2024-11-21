@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "user")
@@ -44,6 +45,26 @@ public class User implements HibernateEntity {
 
     @Column(name = "role")
     private String role;
+
+
+    public User() {
+        this.uuid = UUID.randomUUID().toString();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+
+    public User(String email, String password, String lastName, String firstName, Date birthDate, String phone, String role) {
+        this();
+        this.email = email;
+        this.password = password;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.birthDate = birthDate;
+        this.phone = phone;
+        this.role = role;
+    }
+
 
     // Getters et setters
 

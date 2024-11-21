@@ -2,6 +2,7 @@ package models;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "student")
@@ -21,6 +22,21 @@ public class Student extends User implements HibernateEntity {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public Student() {
+        super();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+
+    public Student(String email, String password, String lastName, String firstName, Date birthDate, String phone, StudentGroup studentGroup) {
+        super(email, password, lastName, firstName, birthDate, phone, "STUDENT");
+        this.studentGroup = studentGroup;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
 
     // Getters et setters
 
