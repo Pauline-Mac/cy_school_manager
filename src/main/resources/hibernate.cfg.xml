@@ -6,7 +6,9 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cy_school_manager</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">cytech0001</property>
         <!-- JDBC connection pool settings -->
         <property name="hibernate.c3p0.min_size">5</property>
         <property name="hibernate.c3p0.max_size">20</property>
@@ -24,12 +26,13 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Mappage des entités -->
-        <mapping class="models.Student"/>
-        <mapping class="models.Course"/>
-        <mapping class="models.Enrollment"/>
+
+        <!-- <mapping class="models.Course"/>-->
+        <!--<mapping class="models.Enrollment"/>-->
         <mapping class="models.StudentGroup"/>
-        <mapping class="models.Note"/>
-        <mapping class="models.Professor"/>
+        <mapping class="models.Student"/>
+        <!--<mapping class="models.Note"/>-->
+        <!--<mapping class="models.Professor"/>-->
         <mapping class="models.User"/>
     </session-factory>
 </hibernate-configuration>

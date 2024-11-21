@@ -13,14 +13,9 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
-import com.mysql.cj.x.protobuf.MysqlxCrud;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
-import models.User;
 import org.apache.commons.codec.binary.Base64;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import models.Student;
+import models.User;
 
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
@@ -38,14 +33,13 @@ import static javax.mail.Message.RecipientType.TO;
 
 public class GMailer {
 
-    private static final String TEST_EMAIL = "cyschoolmanager@gmail.com";
     private final Gmail service;
 
     public GMailer() throws Exception {
         NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         GsonFactory jsonFactory = GsonFactory.getDefaultInstance();
         service = new Gmail.Builder(httpTransport, jsonFactory, getCredentials(httpTransport, jsonFactory))
-                .setApplicationName("Test Mailer")
+                .setApplicationName("CY School Manager")
                 .build();
     }
 
@@ -63,38 +57,78 @@ public class GMailer {
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
-    public void sendMail(String subject, String message) throws Exception {
-        Properties props = new Properties();
-        Session session = Session.getDefaultInstance(props, null);
-        MimeMessage email = new MimeMessage(session);
-        email.setFrom(new InternetAddress(TEST_EMAIL));
-        email.addRecipient(TO, new InternetAddress(TEST_EMAIL));
-        email.setSubject(subject);
-        email.setText(message);
 
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        email.writeTo(buffer);
-        byte[] rawMessageBytes = buffer.toByteArray();
-        String encodedEmail = Base64.encodeBase64URLSafeString(rawMessageBytes);
-        Message msg = new Message();
-        msg.setRaw(encodedEmail);
+    public void sendMail(String subject, String message, String mail_recipient) throws Exception {
+            Properties props = new Properties();
+            Session session = Session.getDefaultInstance(props, null);
+            MimeMessage email = new MimeMessage(session);
+            email.setFrom(new InternetAddress(System.getenv("APP_MAIL")));
+            email.addRecipient(TO, new InternetAddress(mail_recipient));
+            email.setSubject(subject);
+            email.setText(message);
 
-        try {
-            msg = service.users().messages().send("me", msg).execute();
-            System.out.println("Message id: " + msg.getId());
-            System.out.println(msg.toPrettyString());
-        } catch (GoogleJsonResponseException e) {
-            GoogleJsonError error = e.getDetails();
-            if (error.getCode() == 403) {
-                System.err.println("Unable to send message: " + e.getDetails());
-            } else {
-                throw e;
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            email.writeTo(buffer);
+            byte[] rawMessageBytes = buffer.toByteArray();
+            String encodedEmail = Base64.encodeBase64URLSafeString(rawMessageBytes);
+            Message msg = new Message();
+            msg.setRaw(encodedEmail);
+
+            try {
+                msg = service.users().messages().send("me", msg).execute();
+                System.out.println("Message id: " + msg.getId());
+                System.out.println(msg.toPrettyString());
+            } catch (GoogleJsonResponseException e) {
+                GoogleJsonError error = e.getDetails();
+                if (error.getCode() == 403) {
+                    System.err.println("Unable to send message: " + e.getDetails());
+                } else {
+                    throw e;
+                }
             }
         }
-    }
 
-    public static void main(String[] args) throws Exception {
-        //new GMailer().sendMail("A new message", "message");
-    }
+        public void sendClassModification(Student student) throws Exception {
 
-}
+            sendMail("Changement de votre cours",
+                    "Bonjour " +student.getFirstName()+" "+student.getLastName()+
+                            ",\n L'un de vos cours a été modifié",
+                    student.getEmail());
+        }
+
+        public void sendInfoModificationConfirmation(User user) throws Exception {
+
+            String message = "Bonjour "+ user.getFirstName()+" "+user.getLastName()+",\n"
+                    +"Vos informations personnelles ont bien été modifiées avec succès.\n\n"
+                    +"Voici un récapitulatif de vos informations :\n" +
+                    "Prénom : \" + user.getFirstName()\n"+
+                    "Nom : " + user.getLastName()+"\n"+
+                    "Email : " + user.getEmail()+"\n"+
+                    "Date de naissance : " + user.getBirthDate()+"\n"+
+                    "Téléphone : " + user.getPhone()+"\n";
+
+
+            sendMail("Modification de vos informations personnelles", message, user.getEmail());
+        }
+
+        public void sendNewNoteNotification(Student student) throws Exception {
+
+            sendMail("Nouvelles notes disponibles",
+                    "Bonjour " +student.getFirstName()+" "+student.getLastName()+
+                            ",\n De nouvelles notes ont été ajoutées ou modifiées à votre dossier",
+                    student.getEmail());
+        }
+
+        public void sendNewInscriptionNotification(Student student) throws Exception {
+
+            sendMail("Validation de l'inscription",
+                    "Bonjour " +student.getFirstName()+" "+student.getLastName()+
+                            ",\n Votre inscription scolaire a été validée",
+                    student.getEmail());
+        }
+
+        public static void main(String[] args) throws Exception {
+            new GMailer().sendMail("A new message", "message", "pauline.maceiras@gmail.com");
+        }
+
+    }

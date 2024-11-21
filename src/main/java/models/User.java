@@ -1,13 +1,13 @@
 package models;
 
 import jakarta.persistence.*;
-import org.checkerframework.checker.interning.qual.FindDistinct;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-//@Table(name = "user")
+@Table(name = "user")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements HibernateEntity {
 
     @Id
@@ -37,10 +37,10 @@ public class User implements HibernateEntity {
     private String phone;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
     @Column(name = "role")
     private String role;
@@ -111,19 +111,17 @@ public class User implements HibernateEntity {
         this.phone = phone;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
 
-    public void setCreatedAt(Date createdAt) {
+
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 

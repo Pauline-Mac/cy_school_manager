@@ -1,10 +1,7 @@
 package services.hibernate;
 
 import models.HibernateEntity;
-import services.hibernate.commands.GetAll;
-import services.hibernate.commands.GetAllWhere;
-import services.hibernate.commands.HibernateCommand;
-import services.hibernate.commands.Get;
+import services.hibernate.commands.*;
 
 import java.util.List;
 
@@ -14,6 +11,9 @@ import java.util.List;
 */
 public class HibernateInvoker {
     HibernateCommand command;
+
+    public HibernateEntity add(HibernateEntity entity) {return (HibernateEntity) executeCommand(new Add(entity));}
+
 
     public HibernateFacade get(Class clazz, Integer id) {
         return (HibernateFacade) executeCommand(new Get(clazz, id));
