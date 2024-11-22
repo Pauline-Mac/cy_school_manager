@@ -34,4 +34,10 @@ public class HibernateFacade {
     public List<HibernateEntity> getAllWhere(Class clazz, String attribute, String value) {
         return hibernate.getAllWhere(clazz, attribute, value);
     }
+
+
+    public boolean update(HibernateEntity entity) {
+        return hibernate.update(entity);
+    }
+
 }

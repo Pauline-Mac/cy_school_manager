@@ -1,4 +1,4 @@
-package services.authentification;
+package services.authentication;
 
 import models.User;
 import org.apache.commons.codec.digest.DigestUtils;

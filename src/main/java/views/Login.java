@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.User;
-import services.authentification.AuthService;
+import services.authentication.AuthService;
 import services.hibernate.HibernateFacade;
 import java.io.IOException;
 

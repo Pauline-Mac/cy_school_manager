@@ -1,10 +1,7 @@
 package services.hibernate;
 
 import models.HibernateEntity;
-import services.hibernate.commands.GetAll;
-import services.hibernate.commands.GetAllWhere;
-import services.hibernate.commands.HibernateCommand;
-import services.hibernate.commands.Get;
+import services.hibernate.commands.*;
 
 import java.util.List;
 
@@ -34,5 +31,9 @@ public class HibernateInvoker {
             System.err.println("Hibernate Error:" + command.getClass().getName() + "\n" + e.getMessage());
             return null;
         }
+    }
+
+    public Boolean update(HibernateEntity entity) {
+        return (Boolean) executeCommand(new Update(entity));
     }
 }
