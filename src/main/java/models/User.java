@@ -2,6 +2,7 @@ package models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
@@ -32,7 +33,7 @@ public class User implements HibernateEntity {
     private String firstName;
 
     @Column(name = "birth_date", nullable = false)
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "phone", nullable = false)
     private String phone;
@@ -54,7 +55,7 @@ public class User implements HibernateEntity {
     }
 
 
-    public User(String email, String password, String lastName, String firstName, Date birthDate, String phone, String role) {
+    public User(String email, String password, String lastName, String firstName, LocalDate birthDate, String phone, String role) {
         this();
         this.email = email;
         this.password = password;
@@ -116,11 +117,11 @@ public class User implements HibernateEntity {
         this.firstName = firstName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

@@ -4,6 +4,7 @@ import models.HibernateEntity;
 import models.Student;
 import services.hibernate.commands.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -15,20 +16,14 @@ public class HibernateInvoker {
     HibernateCommand command;
 
 
-    public Student createStudent(String email, String password, String lastName, String firstName, Date birthDate, String phone, String studentGroupName) {
-        Create createCommand = new Create();
-        Student student = createCommand.createStudent(email, password, lastName, firstName, birthDate, phone, studentGroupName);
-        return student;
+
+    public boolean save(HibernateEntity entity) {
+        Save saveCommand = new Save(entity);
+        return executeCommand(saveCommand) != null;
     }
 
-
-    public void saveStudent(Student student) {
-        Save saveCommand = new Save(student);
-        executeCommand(saveCommand);
-    }
-
-    public HibernateFacade get(Class clazz, Integer id) {
-        return (HibernateFacade) executeCommand(new Get(clazz, id));
+    public HibernateEntity get(Class clazz, Integer id) {
+        return (HibernateEntity) executeCommand(new Get(clazz, id));
     }
 
     public List<HibernateEntity> getAll(Class clazz) {

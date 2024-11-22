@@ -24,6 +24,10 @@ public class HibernateReceiver {
         return instance;
     }
 
+    public boolean save(HibernateEntity entity) {
+        return client.save(entity);
+    }
+
     public HibernateEntity get(Class clazz, Integer id) {
         return client.get(clazz, id);
     }

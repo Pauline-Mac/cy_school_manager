@@ -1,6 +1,7 @@
 package services.hibernate.commands;
 
 import models.HibernateEntity;
+import services.hibernate.HibernateInvoker;
 import services.hibernate.HibernateReceiver;
 
 /*
@@ -10,22 +11,20 @@ import services.hibernate.HibernateReceiver;
 public class Save implements HibernateCommand {
 
     HibernateEntity entity;
+    HibernateInvoker invoker = new HibernateInvoker();
 
     public Save(HibernateEntity entity) {
         this.entity = entity;
     }
 
-    @Override
-    public HibernateEntity execute() {
-        try {
-            HibernateReceiver.getInstance().client.session.beginTransaction();
-            HibernateReceiver.getInstance().client.session.persist(entity);
-            HibernateReceiver.getInstance().client.session.getTransaction().commit();
-        } catch (Exception e) {
-            HibernateReceiver.getInstance().client.session.getTransaction().rollback();
-            throw new RuntimeException("Error during save operation", e);
-        }
-        return entity;
+
+    public Object execute(HibernateEntity entity) {
+        invoker.save(entity);
+        return null;
     }
 
+    @Override
+    public Object execute() {
+        return null;
+    }
 }

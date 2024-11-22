@@ -1,6 +1,8 @@
 package services.hibernate;
 
 import models.HibernateEntity;
+
+
 import java.util.List;
 
 /*
@@ -23,7 +25,12 @@ public class HibernateFacade {
         }
         return instance;
     }
-    public HibernateFacade get(Class clazz, Integer id) {
+
+    public boolean save(HibernateEntity entity) {
+        return hibernate.save(entity);
+    }
+
+    public HibernateEntity get(Class clazz, Integer id) {
         return hibernate.get(clazz, id);
     }
 
@@ -34,4 +41,6 @@ public class HibernateFacade {
     public List<HibernateEntity> getAllWhere(Class clazz, String attribute, String value) {
         return hibernate.getAllWhere(clazz, attribute, value);
     }
+
+
 }

@@ -1,6 +1,8 @@
 package models;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -30,7 +32,7 @@ public class Student extends User implements HibernateEntity {
     }
 
 
-    public Student(String email, String password, String lastName, String firstName, Date birthDate, String phone, StudentGroup studentGroup) {
+    public Student(String email, String password, String lastName, String firstName, LocalDate birthDate, String phone, StudentGroup studentGroup) {
         super(email, password, lastName, firstName, birthDate, phone, "STUDENT");
         this.studentGroup = studentGroup;
         this.createdAt = LocalDateTime.now();
@@ -42,10 +44,6 @@ public class Student extends User implements HibernateEntity {
 
     /*public Long getStudentId() {
         return studentId;
-    }*/
-
-    /*public void setStudentId(Long studentId) {
-        this.studentId = studentId;
     }*/
 
     public StudentGroup getStudentGroup() {
