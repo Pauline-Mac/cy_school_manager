@@ -3,10 +3,7 @@ package services.hibernate;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-import models.HibernateEntity;
-import models.Student;
-import models.StudentGroup;
-import models.User;
+import models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,16 +15,34 @@ import java.util.List;
 public class HibernateAuthClient {
     public Session session;
     public HibernateAuthClient() {
-        Configuration config = new Configuration();
-        config.configure("hibernate.cfg.xml");
-        config.setProperty("hibernate.connection.url", System.getenv("DB_URL"));
-        config.setProperty("hibernate.connection.username", System.getenv("DB_USERNAME"));
-        config.setProperty("hibernate.connection.password", System.getenv("DB_PASSWORD"));
-        config.addAnnotatedClass(User.class);
-        config.addAnnotatedClass(StudentGroup.class);
-        config.addAnnotatedClass(Student.class);
-        SessionFactory sessionFactory = config.buildSessionFactory();
-        session = sessionFactory.openSession();
+        try {
+            Configuration config = new Configuration();
+
+            config.configure("hibernate.cfg.xml");
+
+            config.setProperty("hibernate.connection.url", System.getenv("DB_URL"));
+            config.setProperty("hibernate.connection.username", System.getenv("DB_USERNAME"));
+            config.setProperty("hibernate.connection.password", System.getenv("DB_PASSWORD"));
+
+            config.addAnnotatedClass(User.class);
+            config.addAnnotatedClass(StudentGroup.class);
+            config.addAnnotatedClass(Student.class);
+            config.addAnnotatedClass(Professor.class);
+            config.addAnnotatedClass(Note.class);
+            config.addAnnotatedClass(Enrollment.class);
+            config.addAnnotatedClass(Course.class);
+
+            System.out.println("Hibernate configuration loaded.");
+
+            SessionFactory sessionFactory = config.buildSessionFactory();
+
+            session = sessionFactory.openSession();
+
+            System.out.println("Hibernate session opened.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error initializing Hibernate: " + e.getMessage());
+        }
     }
 
     public boolean save(HibernateEntity entity){

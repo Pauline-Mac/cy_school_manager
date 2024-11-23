@@ -39,10 +39,10 @@ public class User implements HibernateEntity {
     private String phone;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    private LocalDate updatedAt;
 
     @Column(name = "role")
     private String role;
@@ -50,8 +50,8 @@ public class User implements HibernateEntity {
 
     public User() {
         this.uuid = UUID.randomUUID().toString();
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
     }
 
 
@@ -135,15 +135,15 @@ public class User implements HibernateEntity {
 
 
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdatedAt() {
+    public LocalDate getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
+    public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
     }
 

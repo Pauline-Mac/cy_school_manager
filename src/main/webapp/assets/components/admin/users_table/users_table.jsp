@@ -9,27 +9,20 @@
 	</tr>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-	<c:forEach items="${users}" var="student">
+	<c:forEach items="${users}" var="user">
 		<tr>
 			<td>
-				<a href=""><div class="item">${student.email}</div></a>
+				<a href=""><div class="item">${user.email}</div></a>
 			</td>
 			<td>
-				<a href=""><div class="item">${student.lastName}</div></a>
+				<a href=""><div class="item">${user.lastName}</div></a>
 			</td>
 			<td>
-				<a href=""><div class="item">${student.firstName}</div></a>
+				<a href=""><div class="item">${user.firstName}</div></a>
 			</td>
 			<td>
 				<a href=""><div class="item">
-					<c:choose>
-						<c:when test="${student.studentGroup != null}">
-							${student.studentGroup.studentGroupName}
-						</c:when>
-						<c:otherwise>
-							Aucune classe assignée
-						</c:otherwise>
-					</c:choose>
+
 				</div></a>
 			</td>
 		</tr>

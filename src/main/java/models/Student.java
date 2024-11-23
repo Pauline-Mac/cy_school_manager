@@ -8,35 +8,32 @@ import java.util.Date;
 
 @Entity
 @Table(name = "student")
+@PrimaryKeyJoinColumn(name = "user_id")
 public class Student extends User implements HibernateEntity {
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_id")
-    private Long studentId;*/
 
     @ManyToOne
     @JoinColumn(name = "student_group_id", nullable = false)
     private StudentGroup studentGroup;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    private LocalDate updatedAt;
 
     public Student() {
         super();
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
     }
 
 
     public Student(String email, String password, String lastName, String firstName, LocalDate birthDate, String phone, StudentGroup studentGroup) {
         super(email, password, lastName, firstName, birthDate, phone, "STUDENT");
         this.studentGroup = studentGroup;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
     }
 
 
@@ -54,19 +51,19 @@ public class Student extends User implements HibernateEntity {
         this.studentGroup = studentGroup;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdatedAt() {
+    public LocalDate getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
+    public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
     }
 }
