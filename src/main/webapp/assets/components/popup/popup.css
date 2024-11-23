@@ -1,0 +1,13 @@
+
+
+.popup-container {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.popup .popup-text {
+    color: #000;
+    background: transparent;
+    text-align: center;
+}
