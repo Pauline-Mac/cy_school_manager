@@ -33,6 +33,19 @@ public class Note implements HibernateEntity {
     @Column(name = "updated_at")
     private LocalDate updatedAt;
 
+    public Note(Double value, Enrollment enrollment, Course course){
+        this.value = value;
+        this.enrollment = enrollment;
+        this.course = course;
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
+    }
+
+    public Note() {
+
+    }
+
+
     // Getters et setters
 
     public Long getNoteId() {

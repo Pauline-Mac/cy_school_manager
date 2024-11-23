@@ -3,6 +3,7 @@ package models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +32,19 @@ public class Enrollment {
 
     @Column(name = "updated_at")
     private LocalDate updatedAt;
+
+    public Enrollment(Student student, Course course){
+        this.student = student;
+        this.course = course;
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
+        this.notes = new ArrayList<>();
+    }
+
+    public Enrollment() {
+
+    }
+
 
     // Getters et setters
 

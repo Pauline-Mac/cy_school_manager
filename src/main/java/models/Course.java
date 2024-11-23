@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,20 @@ public class Course implements HibernateEntity{
 
     @Column(name = "updated_at")
     private LocalDate updatedAt;
+
+    public Course(){
+
+    }
+
+    public Course(String className, Professor professor){
+        this.className = className;
+        this.professor = professor;
+        this.classAt = LocalDate.now();
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
+        this.enrollments = new ArrayList<>();
+    }
+
 
     // Getters and setters
 
