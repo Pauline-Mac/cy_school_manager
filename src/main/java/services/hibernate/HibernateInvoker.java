@@ -17,9 +17,9 @@ public class HibernateInvoker {
 
 
 
-    public boolean save(HibernateEntity entity) {
+    public Boolean save(HibernateEntity entity) {
         Save saveCommand = new Save(entity);
-        return executeCommand(saveCommand) != null;
+        return (Boolean) executeCommand(saveCommand);
     }
 
     public HibernateEntity get(Class clazz, Integer id) {

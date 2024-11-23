@@ -49,7 +49,7 @@ public class HibernateAuthClient {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(entity);
+            session.persist(entity);
             transaction.commit();
             return true;
         } catch (Exception e) {

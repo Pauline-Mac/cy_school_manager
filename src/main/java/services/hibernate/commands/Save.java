@@ -11,7 +11,7 @@ import services.hibernate.HibernateReceiver;
 public class Save implements HibernateCommand {
 
     HibernateEntity entity;
-    HibernateInvoker invoker = new HibernateInvoker();
+    HibernateReceiver receiver = HibernateReceiver.getInstance();
 
     public Save(HibernateEntity entity) {
         this.entity = entity;
@@ -19,12 +19,12 @@ public class Save implements HibernateCommand {
 
 
     public Object execute(HibernateEntity entity) {
-        invoker.save(entity);
+        receiver.save(entity);
         return null;
     }
 
     @Override
-    public Object execute() {
-        return null;
+    public Boolean execute() {
+        return receiver.save(entity);
     }
 }
