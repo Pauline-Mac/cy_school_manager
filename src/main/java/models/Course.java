@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "class")
@@ -15,9 +16,8 @@ public class Course implements HibernateEntity{
     @Column(name = "class_id")
     private Long classId;
 
-    @ManyToOne
-    @JoinColumn(name = "enrollment_id", nullable = false)
-    private Enrollment enrollment;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Enrollment> enrollments;
 
     @ManyToOne
     @JoinColumn(name = "professor_id", nullable = false)
@@ -45,13 +45,9 @@ public class Course implements HibernateEntity{
         this.classId = classId;
     }
 
-    public Enrollment getEnrollment() {
-        return enrollment;
-    }
 
-    public void setEnrollment(Enrollment enrollment) {
-        this.enrollment = enrollment;
-    }
+
+
 
     public Professor getProfessor() {
         return professor;

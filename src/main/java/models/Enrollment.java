@@ -19,8 +19,9 @@ public class Enrollment {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    @OneToMany(mappedBy = "enrollment")
-    private List<Course> courses;
+    @ManyToOne
+    @JoinColumn(name = "class_id", nullable = false)
+    private Course course;
 
     @OneToMany(mappedBy = "enrollment")
     private List<Note> notes;
