@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "enrollment")
-public class Enrollment {
+public class Enrollment implements HibernateEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

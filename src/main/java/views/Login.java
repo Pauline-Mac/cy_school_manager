@@ -43,7 +43,9 @@ public class Login extends HttpServlet {
 			User user = (User) hibernate.getAllWhere(User.class, "email", email).get(0);
 			if(new AuthService().authenticate(user, email, password)) {
 				request.getSession().setAttribute("user", user);
-				request.getRequestDispatcher(request.getContextPath() + user.getRole() + "/index").forward(request, response);
+				System.out.println("Authentication succeeded, role is " + user.getRole() +" !");
+				response.sendRedirect(request.getContextPath() + "/" + user.getRole().toLowerCase() + "/students");
+
 			}
 		} catch (Exception e){
 			request.setAttribute("errorMessage", "Incorrect email or password");

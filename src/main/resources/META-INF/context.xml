@@ -18,7 +18,7 @@
         </listener>
     </web-app>
 
-    <Realm className="org.apache.catalina.realm.DataSourceRealm"
+    <Realm className="org.apache.catalina.realm.JDBCRealm"
            dataSourceName="CySchoolManagerDB"
            userTable="user"
            userNameCol="email"

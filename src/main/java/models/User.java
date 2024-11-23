@@ -1,6 +1,7 @@
 package models;
 
 import jakarta.persistence.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -58,7 +59,7 @@ public class User implements HibernateEntity {
     public User(String email, String password, String lastName, String firstName, LocalDate birthDate, String phone, String role) {
         this();
         this.email = email;
-        this.password = password;
+        this.password = DigestUtils.sha256Hex(password);
         this.lastName = lastName;
         this.firstName = firstName;
         this.birthDate = birthDate;
