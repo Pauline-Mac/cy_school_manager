@@ -12,6 +12,7 @@
 	<link href="${pageContext.request.contextPath}/assets/components/admin/left_sidebar/left_sidebar.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/components/admin/users_table/users_table.css" rel="stylesheet" type="text/css">
 	<link href="${pageContext.request.contextPath}/assets/components/footer/footer.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/assets/components/admin/form/add_user_form.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -23,8 +24,16 @@
 			
 			<div class="inner-container">
 				<main class="users-main">
-					<h1>Professeurs</h1>
+
+					<div>
+						<h1>Professeurs</h1>
+						<a href="">Ajouter un professeur</a>
+					</div>
+
 					<jsp:include page='/assets/components/admin/users_table/users_table.jsp'/>
+					
+					<jsp:include page="/assets/components/admin/form/add_user_form.jsp"/>
+					
 				</main>
 			</div>
 			

@@ -78,4 +78,17 @@
         <servlet-name>AdminStudents</servlet-name>
         <url-pattern>/admin/students</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddUser</servlet-name>
+        <servlet-class>views.admin.AddUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddUser</servlet-name>
+        <url-pattern>adduser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddUser</servlet-name>
+        <url-pattern>adduserpost</url-pattern>
+    </servlet-mapping>
 </web-app>
