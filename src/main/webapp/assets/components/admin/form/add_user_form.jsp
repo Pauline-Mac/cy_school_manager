@@ -1,4 +1,4 @@
-<script src="../js/add_user.js"></script>
+
 <form class="add-form" action="adduserpost" method="post">
 
     <div class="add-user-form-title">
@@ -34,11 +34,15 @@
         <tr>
             <td><label for="role">Statut</label></td>
             <td>
-                <select name="role" id="role" class="add-user-input-select add-user-input-table">
+                <select name="role" id="role" class="add-user-input-select add-user-input-table" onchange="onRoleChange()">
                     <option value="student">Eleve</option>
                     <option value="professor">Professeur</option>
                 </select>
             </td>
+        </tr>
+        <tr id="group-id-tr">
+            <td><label for="group_id">Numéro de groupe</label></td>
+            <td><input type="number" id="group_id" name="group_id" class="add-user-input add-user-input-table"></td>
         </tr>
     </table>
 

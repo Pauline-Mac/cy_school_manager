@@ -36,6 +36,12 @@ public class AddUser extends HttpServlet {
 
         String role = req.getParameter("role");
 
+        String groupId = "";
+
+        if (role.equals("student")) {
+            groupId = req.getParameter("group_id");
+        }
+
 
         String[] classes = req.getParameterValues("class[]");
 
@@ -52,6 +58,7 @@ public class AddUser extends HttpServlet {
         System.out.println(birthDate);
         System.out.println(username);
         System.out.println(role);
+        System.out.println(groupId);
 
         if (classes != null) {
             for (String className : classes) {

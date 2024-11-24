@@ -41,3 +41,23 @@ function addClass() {
 
 }
 
+function onRoleChange() {
+    const tr = document.getElementById("group-id-tr");
+    const input = document.getElementById("group_id");
+    const role = document.getElementById("role");
+
+
+    switch (role.value) {
+        case "professor":
+            tr.style.display = "none";
+            input.disabled = false;
+            break;
+        case "student":
+            tr.style.display = "";
+            input.disabled = true;
+            break;
+        default:
+            break;
+    }
+
+}
