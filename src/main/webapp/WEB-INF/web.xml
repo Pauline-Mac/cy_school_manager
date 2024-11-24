@@ -79,7 +79,15 @@
         <url-pattern>/admin/students</url-pattern>
     </servlet-mapping>
 
-   <security-constraint>
+    <filter>
+        <filter-name>AdminAuthenticationFilter</filter-name>
+        <filter-class>views.AdminAuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminAuthenticationFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+  <!-- <security-constraint>
         <display-name>Admin Authentication</display-name>
         <web-resource-collection>
             <web-resource-name>Admin Pages</web-resource-name>
@@ -95,9 +103,13 @@
         <realm-name>CySchoolManagerDB</realm-name>
         <form-login-config>
             <form-login-page>/login</form-login-page>
-            <form-error-page>/admin/index</form-error-page>
+            <form-error-page>/login_error.jsp</form-error-page>
         </form-login-config>
 
     </login-config>
+
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>-->
 
 </web-app>

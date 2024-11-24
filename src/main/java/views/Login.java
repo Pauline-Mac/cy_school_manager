@@ -4,6 +4,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import models.User;
 import services.authentification.AuthService;
 import services.hibernate.HibernateFacade;
@@ -29,7 +30,17 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		this.getServletContext().getRequestDispatcher("/WEB-INF/admin/login/login.jsp").forward(request, response);
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			response.sendRedirect(request.getContextPath() + "/" +
+					user.getRole().toLowerCase() + "/students");
+			return;
+		}
+
+		this.getServletContext()
+				.getRequestDispatcher("/WEB-INF/admin/login/login.jsp")
+				.forward(request, response);
 	}
 
 	/**
@@ -42,14 +53,22 @@ public class Login extends HttpServlet {
 		try {
 			User user = (User) hibernate.getAllWhere(User.class, "email", email).get(0);
 			if(new AuthService().authenticate(user, email, password)) {
-				request.getSession().setAttribute("user", user);
-				System.out.println("Authentication succeeded, role is " + user.getRole() +" !");
-				response.sendRedirect(request.getContextPath() + "/" + user.getRole().toLowerCase() + "/students");
-
+				HttpSession oldSession = request.getSession(false);
+				if (oldSession != null) {
+					oldSession.invalidate();
+				}
+				HttpSession newSession = request.getSession(true);
+				newSession.setAttribute("user", user);
+				System.out.println("user connecté avec role" + user.getRole()+ " et nom "+user.getFirstName());
+				response.sendRedirect(request.getContextPath() + "/" +
+						user.getRole().toLowerCase() + "/index");
+			} else {
+				throw new Exception("Authentication failed");
 			}
+
 		} catch (Exception e){
 			request.setAttribute("errorMessage", "Incorrect email or password");
-			request.getRequestDispatcher("login_failed").forward(request, response);
+			doGet(request, response);
 		}
 	}
 }
