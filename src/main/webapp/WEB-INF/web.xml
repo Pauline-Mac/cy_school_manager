@@ -85,10 +85,10 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AddUser</servlet-name>
-        <url-pattern>adduser</url-pattern>
+        <url-pattern>/admin/adduser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddUser</servlet-name>
-        <url-pattern>adduserpost</url-pattern>
+        <url-pattern>/admin/adduserpost</url-pattern>
     </servlet-mapping>
 </web-app>

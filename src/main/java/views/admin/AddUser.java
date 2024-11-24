@@ -20,7 +20,7 @@ public class AddUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/views/admin/add_user.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/admin/add_user/add_user.jsp").forward(req, resp);
     }
 
 
@@ -31,18 +31,38 @@ public class AddUser extends HttpServlet {
         String firstname = req.getParameter("first_name");
         String email = req.getParameter("email");
         String tel = req.getParameter("tel");
-        Date birthDate = (Date) req.getSession().getAttribute("birth_date");
+        String birthDate = req.getParameter("birth_date");
         String username = req.getParameter("username");
+
+        String role = req.getParameter("role");
 
 
         String[] classes = req.getParameterValues("class[]");
 
-        int[] classesId = new int[classes.length];
+//        int[] classesId = new int[classes.length];
+//
+//        for (int i = 0; i < classes.length; i++) {
+//            classesId[i] = Integer.parseInt(classes[i]);
+//        }
 
-        for (int i = 0; i < classes.length; i++) {
-            classesId[i] = Integer.parseInt(classes[i]);
+        System.out.println(lastname);
+        System.out.println(firstname);
+        System.out.println(email);
+        System.out.println(tel);
+        System.out.println(birthDate);
+        System.out.println(username);
+        System.out.println(role);
+
+        if (classes != null) {
+            for (String className : classes) {
+                System.out.println(className);
+            }
         }
 
+
+        resp.sendRedirect("professors");
+
+        // TODO: ajouter la personne dans la bdd
 
 
 

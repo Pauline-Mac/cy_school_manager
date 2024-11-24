@@ -27,12 +27,11 @@
 
 					<div>
 						<h1>Professeurs</h1>
-						<a href="">Ajouter un professeur</a>
+						<a href="adduser">Ajouter un professeur</a>
 					</div>
 
 					<jsp:include page='/assets/components/admin/users_table/users_table.jsp'/>
-					
-					<jsp:include page="/assets/components/admin/form/add_user_form.jsp"/>
+
 					
 				</main>
 			</div>
