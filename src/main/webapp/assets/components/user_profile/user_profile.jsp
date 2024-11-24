@@ -1,6 +1,6 @@
 <form class="user-profile" action="profile" method="POST">
 	<div class="login-form-container">
-		<h1 class="title">Mes coordonnées</h1>
+		<h1 class="title">Mes coordonnï¿½es</h1>
 		<br><br>
 		<div class="user-data">
 			<div class="user-data-label">Email :</div>
@@ -11,7 +11,7 @@
 					id="email"
 					name="email"
 					placeholder="Changer mon email"
-					value="admin@cy-tech.fr"
+					value=${sessionScope.user != null && sessionScope.user.email != null ? sessionScope.user.email : 'email@email.com'}
 				>
 			</div>
 		</div>
@@ -24,13 +24,13 @@
   			placeholder="Changer mon mot de passe"
 		>
 		<br><br>
-		<span>Prénom :</span>
+		<span>Prï¿½nom :</span>
 		<input
 			type="text"
 			id="name"
 			name="name"
-			placeholder="Changer mon prénom"
-			value="Donovan"
+			placeholder="Changer mon prï¿½nom"
+			value=${sessionScope.user != null && sessionScope.user.firstName != null ? sessionScope.user.firstName : 'n/a'}
 		>
 		<br><br>
 		<span>Nom de famille : </span>
@@ -39,18 +39,18 @@
   			id="family_name"
   			name="family_name"
   			placeholder="Changer mon nom de famille"
-  			value="Cardenas"
+  			value=${sessionScope.user != null && sessionScope.user.lastName != null ? sessionScope.user.lastName : 'n/a'}
 		>
 		<br><br>
-		<span>Téléphone :</span>
+		<span>Tï¿½lï¿½phone :</span>
 		<input
 			type="text"
 			id="phone"
 			name="phone"
-			placeholder="Changer mon numéro mobile"
-			value="+33666666666"
+			placeholder="Changer mon numï¿½ro mobile"
+			value=${sessionScope.user != null && sessionScope.user.phone != null ? sessionScope.user.phone : 'n/a'}
 		>
 		<br><br>
-		<input class="button" type="submit" value="Mettre à jour">
+		<input class="button" type="submit" value="Mettre ï¿½ jour">
 	</div>
 </form>
