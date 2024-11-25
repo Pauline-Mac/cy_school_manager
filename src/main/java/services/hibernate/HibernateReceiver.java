@@ -2,7 +2,6 @@ package services.hibernate;
 
 import models.HibernateEntity;
 
-import java.util.HashMap;
 import java.util.List;
 
 /*
@@ -38,5 +37,10 @@ public class HibernateReceiver {
 
     public List<HibernateEntity> getAllWhere(Class clazz, String attribute, String value) {
         return client.getAllWhere(clazz, attribute, value);
+    }
+
+    public Boolean update(HibernateEntity entity) {
+
+        return client.update(entity);
     }
 }

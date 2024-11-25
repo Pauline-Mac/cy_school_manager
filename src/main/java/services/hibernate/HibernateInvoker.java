@@ -3,6 +3,7 @@ package services.hibernate;
 import models.HibernateEntity;
 import models.Student;
 import services.hibernate.commands.*;
+import services.hibernate.commands.*;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -41,5 +42,9 @@ public class HibernateInvoker {
             System.err.println("Hibernate Error:" + command.getClass().getName() + "\n" + e.getMessage());
             return null;
         }
+    }
+
+    public Boolean update(HibernateEntity entity) {
+        return (Boolean) executeCommand(new Update(entity));
     }
 }

@@ -1,8 +1,6 @@
 package services.hibernate;
 
 import models.HibernateEntity;
-
-
 import java.util.List;
 
 /*
@@ -42,5 +40,9 @@ public class HibernateFacade {
         return hibernate.getAllWhere(clazz, attribute, value);
     }
 
+
+    public boolean update(HibernateEntity entity) {
+        return hibernate.update(entity);
+    }
 
 }
