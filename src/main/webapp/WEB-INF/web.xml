@@ -43,17 +43,19 @@
         <servlet-name>AdminIndex</servlet-name>
         <servlet-class>views.admin.AdminIndex</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>AdminIndex</servlet-name>
         <url-pattern>/admin/index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminIndex</servlet-name>
+        <url-pattern>/admin</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>AdminProfile</servlet-name>
         <servlet-class>views.admin.AdminProfile</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>AdminProfile</servlet-name>
         <url-pattern>/admin/profile</url-pattern>
@@ -63,7 +65,6 @@
         <servlet-name>AdminProfessors</servlet-name>
         <servlet-class>views.admin.AdminProfessors</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>AdminProfessors</servlet-name>
         <url-pattern>/admin/professors</url-pattern>
@@ -73,7 +74,6 @@
         <servlet-name>AdminStudents</servlet-name>
         <servlet-class>views.admin.AdminStudents</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>AdminStudents</servlet-name>
         <url-pattern>/admin/students</url-pattern>
@@ -86,6 +86,10 @@
     <servlet-mapping>
         <servlet-name>StudentIndex</servlet-name>
         <url-pattern>/student/index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentIndex</servlet-name>
+        <url-pattern>/student</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -122,6 +126,10 @@
     <servlet-mapping>
         <servlet-name>ProfessorIndex</servlet-name>
         <url-pattern>/professor/index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfessorIndex</servlet-name>
+        <url-pattern>/professor</url-pattern>
     </servlet-mapping>
 
     <servlet>
