@@ -16,18 +16,35 @@ public class Note implements HibernateEntity {
     @Column(name = "note_id")
     private Long noteId;
 
+    @Column(nullable = false)
+    private Double value;
+
     @ManyToOne
     @JoinColumn(name = "enrollment_id", nullable = false)
     private Enrollment enrollment;
 
-    @Column(name = "note_value", nullable = false)
-    private Long noteValue;
+    @ManyToOne
+    @JoinColumn(name = "class_id", nullable = false)
+    private Course course;
 
     @Column(name = "created_at")
     private LocalDate createdAt;
 
     @Column(name = "updated_at")
     private LocalDate updatedAt;
+
+    public Note(Double value, Enrollment enrollment, Course course){
+        this.value = value;
+        this.enrollment = enrollment;
+        this.course = course;
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
+    }
+
+    public Note() {
+
+    }
+
 
     // Getters et setters
 
@@ -47,13 +64,7 @@ public class Note implements HibernateEntity {
         this.enrollment = enrollment;
     }
 
-    public Long getNoteValue() {
-        return noteValue;
-    }
 
-    public void setNoteValue(Long noteValue) {
-        this.noteValue = noteValue;
-    }
 
     public LocalDate getCreatedAt() {
         return createdAt;
