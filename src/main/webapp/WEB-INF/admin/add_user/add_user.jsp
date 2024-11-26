@@ -20,10 +20,10 @@
 </head>
 <body>
 <div class="layout">
-    <%@ include file='/assets/components/admin/left_sidebar/left_sidebar.jsp' %>
+    <jsp:include page='/assets/components/admin/header/header.jsp'/>
 
     <main class="container">
-        <jsp:include page='/assets/components/admin/header/header.jsp'/>
+        <%@ include file='/assets/components/admin/left_sidebar/left_sidebar.jsp' %>
 
         <div class="inner-container">
             <div class="users-main">
@@ -33,8 +33,8 @@
             </div>
         </div>
 
-        <jsp:include page='/assets/components/footer/footer.jsp'/>
     </main>
+    <jsp:include page='/assets/components/footer/footer.jsp'/>
 
 </div>
 </body>

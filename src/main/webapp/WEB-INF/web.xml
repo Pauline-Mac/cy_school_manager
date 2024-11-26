@@ -136,11 +136,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>UpdateUser</servlet-name>
+        <servlet-name>AdminUpdateUser</servlet-name>
         <servlet-class>views.admin.UpdateUser</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UpdateUser</servlet-name>
+        <servlet-name>AdminUpdateUser</servlet-name>
         <url-pattern>/admin/update-user</url-pattern>
     </servlet-mapping>
 

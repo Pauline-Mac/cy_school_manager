@@ -1,12 +1,18 @@
+<%@ page import="java.util.List" %>
+<%@ page import="models.User" %>
+<%@ page import="services.hibernate.HibernateFacade" %>
+<%@ page import="models.HibernateEntity" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%
+//	System.out.println(request.getAttribute("users_role"));
+%>
 <table class="users-table">
 	<tr>
 		<th>Email</th>
 		<th>Nom</th>
 		<th>Prenom</th>
 		<th><c:choose>
-			<c:when test="${users[0].role == 'PROFESSOR'}">
+			<c:when test="${user_role == 'PROFESSOR'}">
 				Cours
 			</c:when>
 			<c:otherwise>
@@ -14,7 +20,7 @@
 			</c:otherwise>
 		</c:choose></th>
 		<th>Classe</th>
-		<th colspan="3">Action</th>
+<%--		<th colspan="3">Action</th>--%>
 	</tr>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 

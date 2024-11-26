@@ -5,14 +5,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.Course;
-import models.HibernateEntity;
-import models.Professor;
-import models.Student;
+import models.*;
 import services.hibernate.HibernateFacade;
 import services.hibernate.HibernateInvoker;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,13 +35,22 @@ public class AdminProfessors extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+
 			HibernateInvoker invoker = HibernateFacade.getInstance().hibernate;
+
+//			invoker.save(new User(LocalDateTime.now().toString(), "password", "CY", "Admin", LocalDate.now(), "000-0000", "PROFESSOR"));
+
 			List<HibernateEntity> professors = invoker.getAll(Professor.class);
+
+			System.out.println("professors: " + professors);
+
+			request.setAttribute("user_role", "PROFESSOR");
 			request.setAttribute("users", professors);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/professors/professors.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("error", "Unable to retrieve student information: " + e.getMessage());
-			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/professors").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/professors/professors.jsp").forward(request, response);
+			e.printStackTrace();
 		}
 	}
 
