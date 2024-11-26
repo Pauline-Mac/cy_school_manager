@@ -28,10 +28,6 @@
             <td><input name="birth_date" id="birth_date" type="date" class="add-user-input add-user-input-table"></td>
         </tr>
         <tr>
-            <td><label for="username">Nom d'utilisateur</label></td>
-            <td><input name="username" id="username" class="add-user-input add-user-input-table"></td>
-        </tr>
-        <tr>
             <td><label for="role">Statut</label></td>
             <td>
                 <select name="role" id="role" class="add-user-input-select add-user-input-table" onchange="onRoleChange()">
