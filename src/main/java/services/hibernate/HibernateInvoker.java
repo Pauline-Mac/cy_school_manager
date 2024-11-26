@@ -1,8 +1,6 @@
 package services.hibernate;
 
-import models.Enrollment;
-import models.HibernateEntity;
-import models.Student;
+import models.*;
 import org.hibernate.query.Query;
 import services.hibernate.commands.*;
 import services.hibernate.commands.*;
@@ -15,6 +13,22 @@ import java.util.List;
 */
 public class HibernateInvoker {
     HibernateCommand command;
+
+
+    public Long getCountStudentByClass(Course course) {
+
+        return (Long) executeCommand(new GetCountStudentByClass(course));
+    }
+
+    public List<Course> getClassesByProfessor(Professor professor) {
+
+        return (List<Course>) executeCommand(new GetClassesByProfessor(professor));
+    }
+
+    public List<Note> getNotesByProfessor(Professor professor) {
+
+        return (List<Note>) executeCommand(new GetNotesByProfessor(professor));
+    }
 
     public List<Enrollment> getEnrollmentByStudent(Student student) {
 

@@ -1,8 +1,7 @@
 package services.hibernate;
 
-import models.Enrollment;
-import models.HibernateEntity;
-import models.Student;
+import models.*;
+
 import java.util.List;
 
 /*
@@ -24,6 +23,18 @@ public class HibernateFacade {
             instance = new HibernateFacade();
         }
         return instance;
+    }
+
+    public Long getCountStudentByClass(Course course) {
+        return hibernate.getCountStudentByClass(course);
+    }
+
+    public List<Course> getClassesByProfessor(Professor professor) {
+        return hibernate.getClassesByProfessor(professor);
+    }
+
+    public List<Note> getNotesByProfessor(Professor professor) {
+        return hibernate.getNotesByProfessor(professor);
     }
 
     public List<Enrollment> getEnrollmentsByStudent(Student student) {

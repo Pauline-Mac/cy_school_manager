@@ -45,6 +45,43 @@ public class HibernateAuthClient {
         }
     }
 
+    public Long getCountStudentByClass(Course course) {
+        String hql = "SELECT COUNT(e.student.id) " +
+                "FROM Enrollment e " +
+                "WHERE e.course.id = :courseId";
+
+        Query<Long> query = session.createQuery(hql, Long.class);
+
+        query.setParameter("courseId", course.getClassId());
+
+        return query.uniqueResult();
+    }
+
+    public List<Course> getClassesByProfessor(Professor professor) {
+        String hql = "SELECT c FROM Course c " +
+                "WHERE c.professor.id = :professorId";
+
+        Query<Course> query = session.createQuery(hql, Course.class);
+
+        query.setParameter("professorId", professor.getUserId());
+
+        return query.list();
+    }
+
+
+    public List<Note> getNotesByProfessor(Professor professor) {
+        String hql = "SELECT n FROM Note n " +
+                "JOIN n.enrollment e " +
+                "JOIN e.course c " +
+                "WHERE c.professor.id = :professorId";
+
+        Query<Note> query = session.createQuery(hql, Note.class);
+
+        query.setParameter("professorId", professor.getUserId());
+
+        return query.list();
+    }
+
     public List<Enrollment> getEnrollmentByStudent(Student student) {
         String hql = "FROM Enrollment e WHERE e.student = :student";
 
@@ -106,34 +143,4 @@ public class HibernateAuthClient {
         return query.getResultList();
     }
 
-
-    public Boolean update(HibernateEntity entity) {
-
-//
-//        Transaction tx = session.beginTransaction();
-//        CriteriaBuilder cb = session.getCriteriaBuilder();
-//        CriteriaUpdate<HibernateEntity> cu = cb.createCriteriaUpdate(class_);
-//        Root<HibernateEntity> root = cu.from(class_);
-//
-//        cu.set(root.get(attribute), value);
-//
-//        cu.where(cb.equal(root.get(attribute), value));
-//
-//
-//        int affectedRows = session.createQuery(cu).executeUpdate();
-
-        try {
-            Transaction tx = session.beginTransaction();
-            session.persist(entity);
-
-            tx.commit();
-        } catch (Exception e) {
-
-            throw new RuntimeException("Error during update operation", e);
-        }
-
-        return true;
-
-
-    }
 }

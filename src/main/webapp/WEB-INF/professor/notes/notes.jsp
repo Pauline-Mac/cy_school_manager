@@ -21,7 +21,7 @@
         <jsp:include page='/assets/components/professor/header/header.jsp'/>
         <div class="inner-container">
             <main class="notes-main">
-                <h1>Mes notes</h1>
+                <h1>Mes notes attribuées</h1>
                 <jsp:include page='/assets/components/professor/notes_table/notes_table.jsp'/>
             </main>
             <jsp:include page='/assets/components/footer/footer.jsp'/>
