@@ -24,7 +24,7 @@
   			placeholder="Changer mon mot de passe"
 		>
 		<br><br>
-		<span>Pr�nom :</span>
+		<span>Prénom :</span>
 		<input
 			type="text"
 			id="name"

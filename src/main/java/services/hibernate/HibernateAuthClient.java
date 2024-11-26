@@ -45,6 +45,27 @@ public class HibernateAuthClient {
         }
     }
 
+    public List<Enrollment> getEnrollmentByStudent(Student student) {
+        String hql = "FROM Enrollment e WHERE e.student = :student";
+
+        Query<Enrollment> query = session.createQuery(hql, Enrollment.class);
+
+        query.setParameter("student", student);
+
+        return query.list();
+    }
+
+    public Boolean update(HibernateEntity entity) {
+        try {
+            Transaction tx = session.beginTransaction();
+            session.persist(entity);
+            tx.commit();
+        } catch (Exception e) {
+            throw new RuntimeException("Error during update operation", e);
+        }
+        return true;
+    }
+
     public boolean save(HibernateEntity entity){
         Transaction transaction = null;
         try {

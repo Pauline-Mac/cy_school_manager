@@ -1,11 +1,10 @@
 package services.hibernate;
 
+import models.Enrollment;
 import models.HibernateEntity;
 import models.Student;
+import org.hibernate.query.Query;
 import services.hibernate.commands.*;
-
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 /*
@@ -15,7 +14,14 @@ import java.util.List;
 public class HibernateInvoker {
     HibernateCommand command;
 
+    public List<Enrollment> getEnrollmentByStudent(Student student) {
 
+        return (List<Enrollment>) executeCommand(new GetEnrollmentByStudent(student));
+    }
+
+    public Boolean update(HibernateEntity entity) {
+        return (Boolean) executeCommand(new Update(entity));
+    }
 
     public Boolean save(HibernateEntity entity) {
         Save saveCommand = new Save(entity);

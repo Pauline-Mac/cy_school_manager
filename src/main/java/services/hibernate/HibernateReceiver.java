@@ -1,6 +1,8 @@
 package services.hibernate;
 
+import models.Enrollment;
 import models.HibernateEntity;
+import models.Student;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,14 @@ public class HibernateReceiver {
             instance = new HibernateReceiver();
         }
         return instance;
+    }
+
+    public List<Enrollment> getEnrollmentByStudent(Student student){
+        return client.getEnrollmentByStudent(student);
+    }
+
+    public Boolean update(HibernateEntity entity) {
+        return client.update(entity);
     }
 
     public boolean save(HibernateEntity entity) {

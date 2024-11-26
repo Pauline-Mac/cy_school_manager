@@ -64,6 +64,13 @@ public class Enrollment implements HibernateEntity{
         this.student = student;
     }
 
+    public Course getCourse() {
+        return course;
+    }
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public LocalDate getCreatedAt() {
         return createdAt;
     }
@@ -78,5 +85,9 @@ public class Enrollment implements HibernateEntity{
 
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
     }
 }

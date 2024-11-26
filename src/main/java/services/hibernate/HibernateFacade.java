@@ -1,6 +1,8 @@
 package services.hibernate;
 
+import models.Enrollment;
 import models.HibernateEntity;
+import models.Student;
 
 
 import java.util.List;
@@ -24,6 +26,14 @@ public class HibernateFacade {
             instance = new HibernateFacade();
         }
         return instance;
+    }
+
+    public List<Enrollment> getEnrollmentsByStudent(Student student) {
+       return hibernate.getEnrollmentByStudent(student);
+    }
+
+    public boolean update(HibernateEntity entity) {
+        return hibernate.update(entity);
     }
 
     public boolean save(HibernateEntity entity) {

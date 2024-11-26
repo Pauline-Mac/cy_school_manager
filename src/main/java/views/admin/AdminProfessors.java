@@ -41,7 +41,7 @@ public class AdminProfessors extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/professors/professors.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("error", "Unable to retrieve student information: " + e.getMessage());
-			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/professors").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/professors/professors/professors.jsp").forward(request, response);
 		}
 	}
 
