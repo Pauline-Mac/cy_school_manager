@@ -105,4 +105,35 @@ public class HibernateAuthClient {
         Query<HibernateEntity> query = session.createQuery(cr);
         return query.getResultList();
     }
+
+
+    public Boolean update(HibernateEntity entity) {
+
+//
+//        Transaction tx = session.beginTransaction();
+//        CriteriaBuilder cb = session.getCriteriaBuilder();
+//        CriteriaUpdate<HibernateEntity> cu = cb.createCriteriaUpdate(class_);
+//        Root<HibernateEntity> root = cu.from(class_);
+//
+//        cu.set(root.get(attribute), value);
+//
+//        cu.where(cb.equal(root.get(attribute), value));
+//
+//
+//        int affectedRows = session.createQuery(cu).executeUpdate();
+
+        try {
+            Transaction tx = session.beginTransaction();
+            session.persist(entity);
+
+            tx.commit();
+        } catch (Exception e) {
+
+            throw new RuntimeException("Error during update operation", e);
+        }
+
+        return true;
+
+
+    }
 }

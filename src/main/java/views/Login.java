@@ -6,16 +6,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.*;
-import services.authentification.AuthService;
+import services.authentication.AuthService;
 import services.hibernate.HibernateFacade;
-import services.hibernate.HibernateInvoker;
-import services.hibernate.commands.GetAllWhere;
-import services.pdfgenerator.PdfGenerator;
-
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Servlet implementation class AdminLogin
@@ -37,17 +30,7 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("user") != null) {
-			User user = (User) session.getAttribute("user");
-			response.sendRedirect(request.getContextPath() + "/" +
-					user.getRole().toLowerCase() + "/students");
-			return;
-		}
-
-		this.getServletContext()
-				.getRequestDispatcher("/WEB-INF/admin/login/login.jsp")
-				.forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/admin/login/login.jsp").forward(request, response);
 	}
 
 	/**
@@ -237,10 +220,9 @@ public class Login extends HttpServlet {
 			} else {
 				throw new Exception("Authentication failed");
 			}
-
 		} catch (Exception e){
 			request.setAttribute("errorMessage", "Incorrect email or password");
-			doGet(request, response);
+			request.getRequestDispatcher("login_failed").forward(request, response);
 		}
 	}
 }

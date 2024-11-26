@@ -5,6 +5,8 @@ import models.HibernateEntity;
 import models.Student;
 import org.hibernate.query.Query;
 import services.hibernate.commands.*;
+import services.hibernate.commands.*;
+
 import java.util.List;
 
 /*
@@ -17,10 +19,6 @@ public class HibernateInvoker {
     public List<Enrollment> getEnrollmentByStudent(Student student) {
 
         return (List<Enrollment>) executeCommand(new GetEnrollmentByStudent(student));
-    }
-
-    public Boolean update(HibernateEntity entity) {
-        return (Boolean) executeCommand(new Update(entity));
     }
 
     public Boolean save(HibernateEntity entity) {
@@ -47,5 +45,9 @@ public class HibernateInvoker {
             System.err.println("Hibernate Error:" + command.getClass().getName() + "\n" + e.getMessage());
             return null;
         }
+    }
+
+    public Boolean update(HibernateEntity entity) {
+        return (Boolean) executeCommand(new Update(entity));
     }
 }

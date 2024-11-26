@@ -3,8 +3,6 @@ package services.hibernate;
 import models.Enrollment;
 import models.HibernateEntity;
 import models.Student;
-
-
 import java.util.List;
 
 /*
@@ -32,9 +30,6 @@ public class HibernateFacade {
        return hibernate.getEnrollmentByStudent(student);
     }
 
-    public boolean update(HibernateEntity entity) {
-        return hibernate.update(entity);
-    }
 
     public boolean save(HibernateEntity entity) {
         return hibernate.save(entity);
@@ -52,5 +47,9 @@ public class HibernateFacade {
         return hibernate.getAllWhere(clazz, attribute, value);
     }
 
+
+    public boolean update(HibernateEntity entity) {
+        return hibernate.update(entity);
+    }
 
 }

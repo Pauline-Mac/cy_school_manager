@@ -1,0 +1,41 @@
+.notes-main {
+    padding: 2em;
+}
+
+.notes-main .professor-notes-table {
+    margin: 2em 0;
+    table-layout: fixed;
+    width: 100%;
+    height: 15em;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.notes-main .professor-notes-table tr:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+
+.notes-main .professor-notes-table tr:nth-child(even) {
+    background-color: #F5F5F5;
+}
+
+.notes-main .professor-notes-table tr:hover {
+    transition: all 0.15s ease-out;
+    background-color: #5A81C4;
+    font-weight: 700;
+}
+
+.notes-main .professor-notes-table tr:hover a {
+    color: white;
+}
+
+.notes-main .professor-notes-table tr:first-child {
+    pointer-events: none;
+}
+
+.notes-main .professor-notes-table .item {
+	height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
