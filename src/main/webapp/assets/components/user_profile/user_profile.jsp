@@ -1,6 +1,6 @@
 <form class="user-profile" action="profile" method="POST">
 	<div class="login-form-container">
-		<h1 class="title">Mes coordonnées</h1>
+		<h1 class="title">Mes coordonnï¿½es</h1>
 		<br><br>
 		<div class="user-data">
 			<div class="user-data-label">Email :</div>
@@ -11,7 +11,7 @@
 					id="email"
 					name="email"
 					placeholder="Changer mon email"
-					value="admin@cy-tech.fr"
+					value="user@cy-tech.fr"
 				>
 			</div>
 		</div>
@@ -24,13 +24,13 @@
   			placeholder="Changer mon mot de passe"
 		>
 		<br><br>
-		<span>Prénom :</span>
+		<span>Prï¿½nom :</span>
 		<input
 			type="text"
 			id="name"
 			name="name"
-			placeholder="Changer mon prénom"
-			value="Donovan"
+			placeholder="Changer mon prï¿½nom"
+			value="John"
 		>
 		<br><br>
 		<span>Nom de famille : </span>
@@ -39,18 +39,18 @@
   			id="family_name"
   			name="family_name"
   			placeholder="Changer mon nom de famille"
-  			value="Cardenas"
+  			value="Doe"
 		>
 		<br><br>
-		<span>Téléphone :</span>
+		<span>Tï¿½lï¿½phone :</span>
 		<input
 			type="text"
 			id="phone"
 			name="phone"
-			placeholder="Changer mon numéro mobile"
+			placeholder="Changer mon numï¿½ro mobile"
 			value="+33666666666"
 		>
 		<br><br>
-		<input class="button" type="submit" value="Mettre à jour">
+		<input class="button" type="submit" value="Mettre ï¿½ jour">
 	</div>
 </form>

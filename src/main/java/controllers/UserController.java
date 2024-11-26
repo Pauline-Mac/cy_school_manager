@@ -1,4 +1,4 @@
-package views.user;
+package controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
