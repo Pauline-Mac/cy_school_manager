@@ -38,7 +38,7 @@ public class AdminProfessors extends HttpServlet {
 
 			HibernateInvoker invoker = HibernateFacade.getInstance().hibernate;
 
-//			invoker.save(new User(LocalDateTime.now().toString(), "password", "CY", "Admin", LocalDate.now(), "000-0000", "PROFESSOR"));
+//			invoker.save(new Professor("prof@prof.com", "1234", "Moi", "Prof", LocalDate.now(), "000-0000"));
 
 			List<HibernateEntity> professors = invoker.getAll(Professor.class);
 

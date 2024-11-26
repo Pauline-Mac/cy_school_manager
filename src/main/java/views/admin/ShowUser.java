@@ -32,6 +32,10 @@ public class ShowUser extends HttpServlet {
 
         System.out.println("show " + uuid);
 
+        request.setAttribute("user", user);
+
+        getServletContext().getRequestDispatcher("/WEB-INF/admin/show_user/show_user.jsp").forward(request, response);
+
 
     }
 

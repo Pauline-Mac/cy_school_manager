@@ -31,6 +31,8 @@ public class UpdateUser extends HttpServlet {
         // show user data
 
         System.out.println("update " + uuid);
+
+        getServletContext().getRequestDispatcher("/WEB-INF/admin/update_user/update_user.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

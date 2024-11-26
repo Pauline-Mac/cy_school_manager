@@ -25,7 +25,7 @@
 				<div class="users-main">
 					<div>
 						<h1>Etudiants</h1>
-						<a href="">Ajouter un étudiant</a>
+						<a href="adduser">Ajouter un étudiant</a>
 					</div>
 
 					<jsp:include page='/assets/components/admin/users_table/users_table.jsp'/>

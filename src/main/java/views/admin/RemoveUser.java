@@ -29,6 +29,8 @@ public class RemoveUser extends HttpServlet {
 
         // show user data
         System.out.println("removed " + uuid);
+
+        response.sendRedirect(request.getContextPath() + "/admin/index");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

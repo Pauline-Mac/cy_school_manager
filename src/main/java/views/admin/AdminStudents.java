@@ -5,15 +5,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.HibernateEntity;
-import models.Student;
-import models.StudentGroup;
-import models.User;
+import models.*;
 import services.hibernate.HibernateFacade;
 import services.hibernate.HibernateInvoker;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -37,6 +35,9 @@ public class AdminStudents extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			HibernateInvoker invoker = HibernateFacade.getInstance().hibernate;
+
+//			invoker.save(new Student(LocalDateTime.now().toString(), "password", "CY", "Prof", LocalDate.now(), "000-0000", new StudentGroup("1")));
+
 			List<HibernateEntity> students = invoker.getAll(Student.class);
 			request.setAttribute("users", students);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/students/students.jsp").forward(request, response);
