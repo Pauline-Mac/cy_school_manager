@@ -1,3 +1,4 @@
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 <table class="users-table">
 	<tr><th>Email</th><th>Nom</th><th>Prenom</th><th>Classe</th></tr>
 	<tr>

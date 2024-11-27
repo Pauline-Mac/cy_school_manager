@@ -1,3 +1,4 @@
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 <%@ page import="org.hibernate.Session" %>
 <%@ page import="models.User" %>
 <%@ page import="java.time.LocalDateTime" %>
