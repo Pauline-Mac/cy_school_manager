@@ -40,6 +40,14 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>HibernateInitialize</servlet-name>
+        <servlet-class>views.services.hibernate.HibernateInitialize</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HibernateInitialize</servlet-name>
+        <url-pattern>/hibernate/initialize</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>AdminIndex</servlet-name>
