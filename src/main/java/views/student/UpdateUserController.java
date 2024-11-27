@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import models.User;
@@ -43,8 +42,14 @@ public class UpdateUserController extends HttpServlet {
             user.setEmail(req.getParameter("email"));
         if (!req.getParameter("tel").isBlank())
             user.setPhone(req.getParameter("tel"));
-        if (!req.getParameter("birthdate").isBlank())
-            user.setBirthDate(LocalDate.parse(req.getParameter("birthdate"), DateTimeFormatter.ISO_LOCAL_DATE));
+
+
+
+        String birthDate = req.getParameter("birthdate");
+        if (birthDate != null) {
+            LocalDate parsedDate = LocalDate.parse(birthDate);
+            user.setBirthDate(parsedDate);
+        }
 
         boolean updateSuccess = userCrud.updateUser(user);
 

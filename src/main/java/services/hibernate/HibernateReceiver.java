@@ -1,6 +1,6 @@
 package services.hibernate;
 
-import models.HibernateEntity;
+import models.*;
 
 import java.util.List;
 
@@ -21,6 +21,16 @@ public class HibernateReceiver {
             instance = new HibernateReceiver();
         }
         return instance;
+    }
+
+    public Long getCountStudentByClass(Course course){return client.getCountStudentByClass(course);}
+
+    public List<Course> getClassesByProfessor(Professor professor){return client.getClassesByProfessor(professor);}
+
+    public List<Note> getNotesByProfessor(Professor professor){return client.getNotesByProfessor(professor);}
+
+    public List<Enrollment> getEnrollmentByStudent(Student student){
+        return client.getEnrollmentByStudent(student);
     }
 
     public boolean save(HibernateEntity entity) {

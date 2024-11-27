@@ -23,9 +23,6 @@ public class Note implements HibernateEntity {
     @JoinColumn(name = "enrollment_id", nullable = false)
     private Enrollment enrollment;
 
-    @ManyToOne
-    @JoinColumn(name = "class_id", nullable = false)
-    private Course course;
 
     @Column(name = "created_at")
     private LocalDate createdAt;
@@ -33,10 +30,10 @@ public class Note implements HibernateEntity {
     @Column(name = "updated_at")
     private LocalDate updatedAt;
 
-    public Note(Double value, Enrollment enrollment, Course course){
+    public Note(Double value, Enrollment enrollment){
         this.value = value;
         this.enrollment = enrollment;
-        this.course = course;
+        //this.course = course;
         this.createdAt = LocalDate.now();
         this.updatedAt = LocalDate.now();
     }
@@ -65,6 +62,13 @@ public class Note implements HibernateEntity {
     }
 
 
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
 
     public LocalDate getCreatedAt() {
         return createdAt;

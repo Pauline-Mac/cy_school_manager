@@ -5,7 +5,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.*;
+import models.Course;
+import models.HibernateEntity;
+import models.Professor;
+import models.Student;
 import services.hibernate.HibernateFacade;
 import services.hibernate.HibernateInvoker;
 
@@ -35,11 +38,7 @@ public class AdminProfessors extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-
 			HibernateInvoker invoker = HibernateFacade.getInstance().hibernate;
-
-//			invoker.save(new Professor("prof@prof.com", "1234", "Moi", "Prof", LocalDate.now(), "000-0000"));
-
 			List<HibernateEntity> professors = invoker.getAll(Professor.class);
 
 			System.out.println("professors: " + professors);

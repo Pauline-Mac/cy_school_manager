@@ -4,7 +4,7 @@
 		<a href="professors"><div class="item">Professeurs</div></a>
 		<a href="classes"><div class="item">Cours</div></a>
 	</nav>
-	<div class="logout">
-		<a href="logout"><img alt="Logout" src="https://cdn-icons-png.flaticon.com/512/126/126467.png"></a>
-	</div>
+	<footer class="logout">
+		<a href="<%= request.getContextPath() + "/logout" %>"><img alt="Logout" src="https://cdn-icons-png.flaticon.com/512/126/126467.png"></a>
+	</footer>
 </aside>

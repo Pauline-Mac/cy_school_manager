@@ -1,52 +1,45 @@
 package services.pdfgenerator;
 
-import models.Student;
-import models.StudentGroup;
-import models.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import models.*;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import org.thymeleaf.templateresolver.FileTemplateResolver;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+
 import org.xhtmlrenderer.pdf.ITextRenderer;
+import services.hibernate.HibernateFacade;
 
+import java.io.File;
 import java.io.FileOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.*;
 public class PdfGenerator {
 
-    public static void main(String[] args) throws Exception {
-
-        Student student = getStudentFromDatabase(1L);  // Remplacer par l'ID d'un étudiant existant dans la DB
-        generateReportForStudent(student);
-    }
+    private static final String REPORTS_DIRECTORY = "src/main/webapp/reports";
 
     public static void generateReportForStudent(Student student) {
         try {
-
             Map<String, Object> data = prepareData(student);
-
             TemplateEngine templateEngine = configureTemplateEngine();
 
             Context context = new Context();
             context.setVariables(data);
             String renderedHtml = templateEngine.process("rapport_notes", context);
 
+            File reportsDir = new File(REPORTS_DIRECTORY);
+            if (!reportsDir.exists()) {
+                reportsDir.mkdirs();
+            }
 
-            System.out.println(renderedHtml);
+            String fileName = String.format("rapport_notes_%s_%s.pdf",
+                    student.getFirstName(),
+                    student.getLastName());
 
+            String pdfPath = new File(reportsDir, fileName).getAbsolutePath();
 
-            Files.createDirectories(Paths.get("rapports"));
-
-            String pdfPath = Paths.get("rapports", "rapport_notes_" + student.getFirstName() + "_" + student.getLastName() + ".pdf").toString();
             generatePdf(renderedHtml, pdfPath);
 
-            System.out.println("PDF généré avec succès : " + pdfPath);
+            System.out.println("PDF généré avec succès. Chemin : " + pdfPath);
+
         } catch (Exception e) {
             System.err.println("Erreur lors de la génération du PDF :");
             e.printStackTrace();
@@ -60,8 +53,49 @@ public class PdfGenerator {
         data.put("nom", student.getLastName());
         data.put("classe", student.getStudentGroup().getStudentGroupName());
         data.put("date", LocalDate.now().toString());
+
+        HibernateFacade hibernate = HibernateFacade.getInstance();
+        List<Enrollment> enrollments = hibernate.getEnrollmentsByStudent(student);
+
+        List<Map<String, Object>> matieres = new ArrayList<>();
+        double totalMoyennes = 0;
+        int nombreMatieresAvecNotes = 0;
+
+        for (Enrollment enrollment : enrollments) {
+            Map<String, Object> matiereData = new HashMap<>();
+            matiereData.put("nom", enrollment.getCourse().getClassName());
+
+            if (!enrollment.getNotes().isEmpty()) {
+                double sumNotes = 0;
+                int countNotes = enrollment.getNotes().size();
+                for (Note note : enrollment.getNotes()) {
+                    sumNotes += note.getValue();
+                }
+
+                double averageNote = sumNotes / countNotes;
+                matiereData.put("note", String.format("%.2f", averageNote));
+
+                totalMoyennes += averageNote;
+                nombreMatieresAvecNotes++;
+            } else {
+                matiereData.put("note", "Aucune note");
+            }
+
+            matieres.add(matiereData);
+        }
+
+        double moyenneGenerale = nombreMatieresAvecNotes > 0
+                ? totalMoyennes / nombreMatieresAvecNotes
+                : 0;
+
+
+        data.put("matieres", matieres);
+        data.put("moyenne", nombreMatieresAvecNotes > 0 ? String.format("%.2f", moyenneGenerale) : "Non calculable");
+
         return data;
     }
+
+
 
     private static void generatePdf(String htmlContent, String outputPath) throws Exception {
         try (FileOutputStream fos = new FileOutputStream(outputPath)) {
@@ -72,36 +106,15 @@ public class PdfGenerator {
         }
     }
 
-    public static Student getStudentFromDatabase(Long studentId) {
-        // Configuration Hibernate
-        SessionFactory factory = new Configuration()
-                .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(StudentGroup.class)
-                .addAnnotatedClass(User.class)
-                .addAnnotatedClass(Student.class)
-                .buildSessionFactory();
-
-        Session session = factory.getCurrentSession();
-
-        Student student = null;
-
-        try {
-            session.beginTransaction();
-            student = session.get(Student.class, studentId);
-            session.getTransaction().commit();
-        } finally {
-            factory.close();
-        }
-
-        return student;
-    }
 
     private static TemplateEngine configureTemplateEngine() {
-        FileTemplateResolver resolver = new FileTemplateResolver();
-        resolver.setPrefix("src/main/resources/templates/");
+        ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
+        resolver.setPrefix("templates/");
         resolver.setSuffix(".html");
         resolver.setTemplateMode("HTML");
         resolver.setCharacterEncoding("UTF-8");
+        resolver.setOrder(1);
+        resolver.setCacheable(false);
 
         TemplateEngine engine = new TemplateEngine();
         engine.setTemplateResolver(resolver);

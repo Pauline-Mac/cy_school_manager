@@ -19,7 +19,6 @@
 		</c:choose></th>
 		<th colspan="3">Action</th>
 	</tr>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 	<c:forEach items="${users}" var="user">
 		<tr>

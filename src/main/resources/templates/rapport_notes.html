@@ -33,14 +33,14 @@
 <p>Date : [[${date}]]</p>
 <table>
     <tr>
-        <th>Matière</th>
-        <th>Note</th>
+        <th>Nom de la matière</th>
+        <th>Note moyenne</th>
     </tr>
     <tr th:each="matiere : ${matieres}">
         <td th:text="${matiere.nom}"></td>
         <td th:text="${matiere.note}"></td>
     </tr>
 </table>
-<p>Moyenne : [[${moyenne}]]</p>
+<p>Moyenne générale : [[${moyenne}]]</p>
 </body>
 </html>
