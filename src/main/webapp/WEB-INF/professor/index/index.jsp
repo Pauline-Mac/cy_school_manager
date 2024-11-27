@@ -15,18 +15,18 @@
 </head>
 <body>
 	<div class="layout">
-		<%@ include file='/assets/components/professor/left_sidebar/left_sidebar.jsp' %>
-		
+
+		<jsp:include page='/assets/components/professor/header/header.jsp'/>
 		<main class="container">
-			<jsp:include page='/assets/components/professor/header/header.jsp'/>
+			<%@ include file='/assets/components/professor/left_sidebar/left_sidebar.jsp' %>
 			<div class="inner-container">
-				<main class="index-main">
+				<div class="index-main">
 					<h1>Bienvenu(e) professor !</h1>
 					<img class = "img_1" alt="CY TECH" src="https://cytech.cyu.fr/medias/photo/20210910-142739-1-_1658393597514-jpg?ID_FICHE=111566">
-				</main>
-				<jsp:include page='/assets/components/footer/footer.jsp'/>
+				</div>
 			</div>
 		</main>
+		<jsp:include page='/assets/components/footer/footer.jsp'/>
 	</div>
 </body>
 </html>

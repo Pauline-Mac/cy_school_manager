@@ -1,15 +1,20 @@
 .inner-container {
 	background: #e8ecf3;
 	width: 100%;
-	min-height: 90%;
-	position: fixed;
+	/*min-height: 90%;*/
+	/*position: fixed;*/
 	top: 6em;
 	left: 10em;
 	border-top: solid black 1px;
 	border-left: solid black 1px;
+	padding: 2em;
 }
 
 main {
-	width: 90%;
-	padding: 2em 2em;
+	/*width: 90%;*/
+	/*padding: 2em 2em;*/
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 }

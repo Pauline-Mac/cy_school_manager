@@ -1,12 +1,12 @@
 .notes-main {
-    padding: 2em;
+    /*padding: 2em;*/
 }
 
 .notes-main .user-notes-table {
-    margin: 2em 0;
+    /*margin: 2em 0;*/
     table-layout: fixed;
     width: 100%;
-    height: 15em;
+    /*height: 15em;*/
     text-align: center;
     border-collapse: collapse;
 }
@@ -38,4 +38,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.notes-main-div {
+    overflow-y: scroll;
+    max-height: 80vh;
 }
