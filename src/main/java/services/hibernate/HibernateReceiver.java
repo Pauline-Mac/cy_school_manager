@@ -23,6 +23,10 @@ public class HibernateReceiver {
         return instance;
     }
 
+    public List<Student> searchStudentByCriteria(String firstname, String lastname, String studentgroupname, String classname){
+        return client.searchStudentByCriteria(firstname, lastname, studentgroupname, classname);
+    }
+
     public Long getCountStudentByClass(Course course){return client.getCountStudentByClass(course);}
 
     public List<Course> getClassesByProfessor(Professor professor){return client.getClassesByProfessor(professor);}

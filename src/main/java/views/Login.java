@@ -9,6 +9,7 @@ import models.*;
 import services.authentication.AuthService;
 import services.hibernate.HibernateFacade;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Servlet implementation class AdminLogin
@@ -203,7 +204,6 @@ public class Login extends HttpServlet {
 		enrollment1.getNotes().add(note2);
 		enrollment2.getNotes().add(note3);
 		enrollment12.getNotes().add(note4);*/
-
 
 
 		try {

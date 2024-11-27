@@ -15,6 +15,10 @@ public class HibernateInvoker {
     HibernateCommand command;
 
 
+    public List<Student> searchStudentByCriteria(String firstname, String lastname, String studentgroupname, String classname){
+        return (List<Student>) executeCommand(new SearchStudentByCriteria(firstname, lastname, studentgroupname, classname));
+    }
+
     public Long getCountStudentByClass(Course course) {
 
         return (Long) executeCommand(new GetCountStudentByClass(course));
