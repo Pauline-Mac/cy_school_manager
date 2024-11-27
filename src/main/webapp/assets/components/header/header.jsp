@@ -1,3 +1,4 @@
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 <header class="root-header">
 	<div class="logo"><a href="${pageContext.request.contextPath}/index.jsp"><h1>CY School Manager</h1></a></div>
 	<nav class="root-nav">

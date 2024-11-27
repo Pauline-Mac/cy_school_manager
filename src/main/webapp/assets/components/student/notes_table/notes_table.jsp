@@ -1,3 +1,4 @@
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 <table class="user-notes-table">
     <tr><th>Date</th><th>Matière</th><th>Libellé</th><th>Note</th></tr>
     <tr>
