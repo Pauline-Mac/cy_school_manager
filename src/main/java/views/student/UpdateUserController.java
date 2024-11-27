@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 
 import models.User;
@@ -46,11 +47,8 @@ public class UpdateUserController extends HttpServlet {
 
         String birthDate = req.getParameter("birthdate");
         if (birthDate != null) {
-            String[] birthDateComponents = birthDate.split("-");
-            int year = Integer.parseInt(birthDateComponents[0]);
-            int month = Integer.parseInt(birthDateComponents[1]);
-            int day = Integer.parseInt(birthDateComponents[2]);
-            user.setBirthDate(new Date(year - 1900, month - 1, day));
+            LocalDate parsedDate = LocalDate.parse(birthDate);
+            user.setBirthDate(parsedDate);
         }
 
         boolean updateSuccess = userCrud.updateUser(user);

@@ -1,6 +1,7 @@
 package services.hibernate;
 
-import models.HibernateEntity;
+import models.*;
+
 import java.util.List;
 
 /*
@@ -23,7 +24,29 @@ public class HibernateFacade {
         }
         return instance;
     }
-    public HibernateFacade get(Class clazz, Integer id) {
+
+    public Long getCountStudentByClass(Course course) {
+        return hibernate.getCountStudentByClass(course);
+    }
+
+    public List<Course> getClassesByProfessor(Professor professor) {
+        return hibernate.getClassesByProfessor(professor);
+    }
+
+    public List<Note> getNotesByProfessor(Professor professor) {
+        return hibernate.getNotesByProfessor(professor);
+    }
+
+    public List<Enrollment> getEnrollmentsByStudent(Student student) {
+       return hibernate.getEnrollmentByStudent(student);
+    }
+
+
+    public boolean save(HibernateEntity entity) {
+        return hibernate.save(entity);
+    }
+
+    public HibernateEntity get(Class clazz, Integer id) {
         return hibernate.get(clazz, id);
     }
 

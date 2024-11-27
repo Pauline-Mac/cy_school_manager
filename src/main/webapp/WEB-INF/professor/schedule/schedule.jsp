@@ -22,14 +22,8 @@
         <jsp:include page='/assets/components/professor/header/header.jsp'/>
         <div class="inner-container">
             <main class="notes-main">
-                <h1>Emploi de temps</h1><br>
-                <ul>
-                    <li>Lundi 25</li>
-                    <li>Mardi 26</li>
-                    <li>Mercredi 27</li>
-                    <li>Jeudi 28</li>
-                    <li>Vendredi 29</li>
-                </ul>
+                <h1>Mes cours</h1><br>
+                <jsp:include page='/assets/components/professor/classes_table/classes_table.jsp'/>
             </main>
             <jsp:include page='/assets/components/footer/footer.jsp'/>
         </div>
