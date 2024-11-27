@@ -32,8 +32,8 @@ public class ProfessorNotes extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			HibernateInvoker invoker = HibernateFacade.getInstance().hibernate;
-			List<Note> notes = invoker.getNotesByProfessor((Professor) (request.getSession().getAttribute("user")));
+			HibernateFacade facade = HibernateFacade.getInstance();
+			List<Note> notes = facade.getNotesByProfessor((Professor) (request.getSession().getAttribute("user")));
 			request.setAttribute("notes", notes);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/professor/notes/notes.jsp").forward(request, response);
 		} catch (Exception e) {

@@ -35,42 +35,40 @@ public class StudentNotes extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			HibernateInvoker invoker = HibernateFacade.getInstance().hibernate;
+			HibernateFacade facade = HibernateFacade.getInstance();
 			User user = (User) request.getSession().getAttribute("user");
-			List<Enrollment> enrollments = invoker.getEnrollmentByStudent((Student) user);
+			List<Enrollment> enrollments = facade.getEnrollmentsByStudent((Student) user);
 			Map<String, Object> data = new HashMap<>();
 
 			if (!enrollments.isEmpty()) {
 				List<Map<String, Object>> matieres = new ArrayList<>();
 
 				for (Enrollment enrollment : enrollments) {
-					Map<String, Object> matiereData = new HashMap<>();
-					matiereData.put("nom", enrollment.getCourse().getClassName());
 
 					if (!enrollment.getNotes().isEmpty()) {
 						int i = 0;
 						for (Note note : enrollment.getNotes()) {
 							Map<String, Object> noteData = new HashMap<>();
-							noteData.put("note", String.format("%.2f", note.getValue())); // Ajoute la note
-							noteData.put("nom", enrollment.getCourse().getClassName()); // Nom du cours
-							noteData.put("date", note.getCreatedAt()); // Date de la note
-							noteData.put("libelle", "Partiel session " + (i + 1)); // Libellé de la session
+							noteData.put("note", String.format("%.2f", note.getValue()));
+							noteData.put("nom", enrollment.getCourse().getClassName());
+							noteData.put("date", note.getCreatedAt());
+							noteData.put("libelle", "Partiel session " + (i + 1));
 
-							// Ajoute la donnée de note pour chaque session comme une nouvelle ligne
 							matieres.add(noteData);
 							i++;
 						}
 					} else {
-						// Si aucune note n'est présente, ajoute une ligne avec des informations par défaut
-						Map<String, Object> noteData = new HashMap<>();
-						noteData.put("note", "Aucune note");
-						noteData.put("date", "N/A");
-						noteData.put("libelle", "N/A");
-						matieres.add(noteData);
+						Map<String, Object> matiereData = new HashMap<>();
+						matiereData.put("nom", enrollment.getCourse().getClassName());
+						matiereData.put("note", "Aucune note");
+						matiereData.put("date", "N/A");
+						matiereData.put("libelle", "N/A");
+						matieres.add(matiereData);
 					}
 				}
 				data.put("matieres", matieres);
 			}
+
 			request.setAttribute("matieres", data.get("matieres"));
 			this.getServletContext().getRequestDispatcher("/WEB-INF/student/notes/notes.jsp").forward(request, response);
 
@@ -78,6 +76,7 @@ public class StudentNotes extends HttpServlet {
 			request.setAttribute("error", "Unable to retrieve student information: " + e.getMessage());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/student/notes/notes.jsp").forward(request, response);
 		}
+
 
 
 	}

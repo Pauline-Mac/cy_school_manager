@@ -91,6 +91,22 @@
         <servlet-name>AdminStudents</servlet-name>
         <url-pattern>/admin/students</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminAddClass</servlet-name>
+        <servlet-class>views.admin.AdminAddClass</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminAddClass</servlet-name>
+        <url-pattern>/admin/addclass</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminAddEnrollment</servlet-name>
+        <servlet-class>views.admin.AdminAddEnrollment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminAddEnrollment</servlet-name>
+        <url-pattern>/admin/addenrollment</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>StudentIndex</servlet-name>
