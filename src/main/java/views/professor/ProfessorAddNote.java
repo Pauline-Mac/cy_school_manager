@@ -1,11 +1,13 @@
 package views.professor;
 
+import com.google.api.services.gmail.Gmail;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.*;
 import services.hibernate.HibernateFacade;
+import services.mailing.GMailer;
 
 import java.io.IOException;
 import java.util.List;
@@ -65,11 +67,9 @@ public class ProfessorAddNote extends HttpServlet {
 
 			try {
 				double noteValue = Double.parseDouble(noteValueStr);
-
-
 				hibernate.save(new Note(noteValue, selected_student_enrollment ));
-				System.out.println("Methode pour ajouter la note de "+noteValueStr+" à "+selected_student.getFirstName()+ "pour la matiere "+ selected_student_enrollment.getCourse().getClassName());
-
+				GMailer mailer = new GMailer();
+				mailer.sendNewNoteNotification(selected_student);
 				request.setAttribute("success", "La note a été attribuée avec succès.");
 			} catch (NumberFormatException e) {
 				request.setAttribute("error", "Veuillez entrer une note valide.");

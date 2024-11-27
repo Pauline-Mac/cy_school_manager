@@ -16,12 +16,12 @@ public class LoggingFilter implements Filter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
 
-        if (httpRequest.getSession(false) != null) {
+        /*if (httpRequest.getSession(false) != null) {
             User user = (User) httpRequest.getSession().getAttribute("user");
             if (user != null) {
                 System.out.println("Logged in user: " + user.getEmail());
             }
-        }
+        }*/
 
         chain.doFilter(request, response);
     }

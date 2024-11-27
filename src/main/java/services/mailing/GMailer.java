@@ -128,8 +128,4 @@ public class GMailer {
                     enrollment.getStudent().getEmail());
         }
 
-        public static void main(String[] args) throws Exception {
-            new GMailer().sendMail("A new message", "message", "pauline.maceiras@gmail.com");
-        }
-
     }
