@@ -1,6 +1,8 @@
 package services.hibernate;
 
-import models.HibernateEntity;
+import models.*;
+import org.hibernate.query.Query;
+import services.hibernate.commands.*;
 import services.hibernate.commands.*;
 
 import java.util.List;
@@ -12,8 +14,34 @@ import java.util.List;
 public class HibernateInvoker {
     HibernateCommand command;
 
-    public HibernateFacade get(Class clazz, Integer id) {
-        return (HibernateFacade) executeCommand(new Get(clazz, id));
+
+    public Long getCountStudentByClass(Course course) {
+
+        return (Long) executeCommand(new GetCountStudentByClass(course));
+    }
+
+    public List<Course> getClassesByProfessor(Professor professor) {
+
+        return (List<Course>) executeCommand(new GetClassesByProfessor(professor));
+    }
+
+    public List<Note> getNotesByProfessor(Professor professor) {
+
+        return (List<Note>) executeCommand(new GetNotesByProfessor(professor));
+    }
+
+    public List<Enrollment> getEnrollmentByStudent(Student student) {
+
+        return (List<Enrollment>) executeCommand(new GetEnrollmentByStudent(student));
+    }
+
+    public Boolean save(HibernateEntity entity) {
+        Save saveCommand = new Save(entity);
+        return (Boolean) executeCommand(saveCommand);
+    }
+
+    public HibernateEntity get(Class clazz, Integer id) {
+        return (HibernateEntity) executeCommand(new Get(clazz, id));
     }
 
     public List<HibernateEntity> getAll(Class clazz) {

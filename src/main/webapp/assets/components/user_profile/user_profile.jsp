@@ -12,7 +12,7 @@
 					id="email"
 					name="email"
 					placeholder="Changer mon email"
-					value="user@cy-tech.fr"
+					value=${sessionScope.user != null && sessionScope.user.email != null ? sessionScope.user.email : 'email@email.com'}
 				>
 			</div>
 		</div>
@@ -25,13 +25,13 @@
   			placeholder="Changer mon mot de passe"
 		>
 		<br><br>
-		<span>Pr�nom :</span>
+		<span>Prénom :</span>
 		<input
 			type="text"
 			id="name"
 			name="name"
 			placeholder="Changer mon pr�nom"
-			value="John"
+			value=${sessionScope.user != null && sessionScope.user.firstName != null ? sessionScope.user.firstName : 'n/a'}
 		>
 		<br><br>
 		<span>Nom de famille : </span>
@@ -40,7 +40,7 @@
   			id="family_name"
   			name="family_name"
   			placeholder="Changer mon nom de famille"
-  			value="Doe"
+  			value=${sessionScope.user != null && sessionScope.user.lastName != null ? sessionScope.user.lastName : 'n/a'}
 		>
 		<br><br>
 		<span>T�l�phone :</span>
@@ -49,7 +49,7 @@
 			id="phone"
 			name="phone"
 			placeholder="Changer mon num�ro mobile"
-			value="+33666666666"
+			value=${sessionScope.user != null && sessionScope.user.phone != null ? sessionScope.user.phone : 'n/a'}
 		>
 		<br><br>
 		<input class="button" type="submit" value="Mettre � jour">

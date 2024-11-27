@@ -1,13 +1,16 @@
 package models;
 
 import jakarta.persistence.*;
-import org.checkerframework.checker.interning.qual.FindDistinct;
+import org.apache.commons.codec.digest.DigestUtils;
 
-import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
-//@Table(name = "user")
+@Table(name = "user")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements HibernateEntity {
 
     @Id
@@ -31,19 +34,39 @@ public class User implements HibernateEntity {
     private String firstName;
 
     @Column(name = "birth_date", nullable = false)
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "phone", nullable = false)
     private String phone;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDate createdAt;
 
     @Column(name = "updated_at")
-    private Date updatedAt;
+    private LocalDate updatedAt;
 
     @Column(name = "role")
     private String role;
+
+
+    public User() {
+        this.uuid = UUID.randomUUID().toString();
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
+    }
+
+
+    public User(String email, String password, String lastName, String firstName, LocalDate birthDate, String phone, String role) {
+        this();
+        this.email = email;
+        this.password = DigestUtils.sha256Hex(password);
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.birthDate = birthDate;
+        this.phone = phone;
+        this.role = role;
+    }
+
 
     // Getters et setters
 
@@ -95,11 +118,11 @@ public class User implements HibernateEntity {
         this.firstName = firstName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -111,19 +134,17 @@ public class User implements HibernateEntity {
         this.phone = phone;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
 
-    public void setCreatedAt(Date createdAt) {
+
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDate getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
     }
 
