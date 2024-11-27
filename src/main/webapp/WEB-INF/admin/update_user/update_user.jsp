@@ -30,7 +30,7 @@
         <div class="inner-container">
             <div class="users-main">
 
-                <form class="add-form" method="post" action="">
+                <form class="add-form" method="post" action="update-user-post">
 
                     <div class="add-user-form-title">
                         Profil de l'utilisateur
@@ -76,8 +76,8 @@
                         <c:choose>
                             <c:when test="${user.role == 'STUDENT'}">
                                 <tr id="group-id-tr">
-                                    <td><label for="group_id">Numéro de groupe</label></td>
-                                    <td><input type="number" id="group_id" name="group_id" class="add-user-input add-user-input-table" value="${user.studentGroup}" disabled="disabled"></td>
+                                    <td><label for="group_id">Groupe</label></td>
+                                    <td><input id="group_id" name="group_id" class="add-user-input add-user-input-table" value="${user.studentGroup}"></td>
                                 </tr>
                             </c:when>
                         </c:choose>

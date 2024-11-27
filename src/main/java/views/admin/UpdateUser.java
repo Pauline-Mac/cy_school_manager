@@ -6,9 +6,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.HibernateEntity;
 import models.User;
+import models.UserCrud;
 import services.hibernate.HibernateFacade;
+import services.hibernate.HibernateInvoker;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class UpdateUser extends HttpServlet {
@@ -28,7 +31,8 @@ public class UpdateUser extends HttpServlet {
             user = (User) userList.get(0);
         }
 
-        // show user data
+        request.setAttribute("user", user);
+        request.getSession().setAttribute("update-user", user);
 
         System.out.println("update " + uuid);
 
@@ -36,6 +40,29 @@ public class UpdateUser extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+
+        User user = (User) request.getSession().getAttribute("update-user");
+
+
+        if (!request.getParameter("first_name").isBlank())
+            user.setFirstName(request.getParameter("first_name"));
+        if (!request.getParameter("last_name").isBlank())
+            user.setLastName(request.getParameter("last_name"));
+        if (!request.getParameter("email").isBlank())
+            user.setEmail(request.getParameter("email"));
+        if (!request.getParameter("tel").isBlank())
+            user.setPhone(request.getParameter("tel"));
+
+        String birthDate = request.getParameter("birth_date");
+        if (birthDate != null) {
+            LocalDate parsedDate = LocalDate.parse(birthDate);
+            user.setBirthDate(parsedDate);
+        }
+
+        HibernateInvoker hibernate = HibernateFacade.getInstance().hibernate;
+        hibernate.save(user);
+
+        response.sendRedirect(request.getContextPath() + "/admin/index");
+
     }
 }

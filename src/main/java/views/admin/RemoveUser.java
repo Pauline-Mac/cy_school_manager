@@ -19,6 +19,11 @@ public class RemoveUser extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        response.sendRedirect(request.getContextPath() + "/admin/index");
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uuid = request.getParameter("uuid");
         List<HibernateEntity> userList = HibernateFacade.getInstance().getAllWhere(User.class, "uuid", uuid);
         User user = null;
@@ -31,10 +36,6 @@ public class RemoveUser extends HttpServlet {
         System.out.println("removed " + uuid);
 
         response.sendRedirect(request.getContextPath() + "/admin/index");
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
     }
 
 }

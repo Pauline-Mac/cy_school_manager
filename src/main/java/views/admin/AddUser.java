@@ -5,9 +5,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.*;
+import services.hibernate.HibernateFacade;
+import services.hibernate.HibernateInvoker;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 public class AddUser extends HttpServlet {
 
@@ -32,7 +37,7 @@ public class AddUser extends HttpServlet {
         String email = req.getParameter("email");
         String tel = req.getParameter("tel");
         String birthDate = req.getParameter("birth_date");
-        String username = req.getParameter("username");
+        LocalDate localDate = LocalDate.parse(birthDate);
 
         String role = req.getParameter("role");
 
@@ -45,38 +50,43 @@ public class AddUser extends HttpServlet {
 
         String[] classes = req.getParameterValues("class[]");
 
-//        int[] classesId = new int[classes.length];
+        Student student = null;
+        Professor professor = null;
+
+        HibernateInvoker hibernate = HibernateFacade.getInstance().hibernate;
+
+        Enrollment enrollment = null;
+        Course course = null;
+
+
+        if (role.equals("student")) {
+            student = new Student(email, "password", lastname, firstname, localDate, tel, new StudentGroup(groupId));
+            hibernate.save(student);
+
+
+//            for (String className : classes) {
+//                course = (Course) hibernate.getAllWhere(Course.class, "class_id", className).get(0);
 //
-//        for (int i = 0; i < classes.length; i++) {
-//            classesId[i] = Integer.parseInt(classes[i]);
-//        }
+//                enrollment = new Enrollment(student, course);
+//
+//                hibernate.save(enrollment);
+//            }
 
-        System.out.println(lastname);
-        System.out.println(firstname);
-        System.out.println(email);
-        System.out.println(tel);
-        System.out.println(birthDate);
-        System.out.println(username);
-        System.out.println(role);
-        System.out.println(groupId);
+        }
+        else {
+            professor = new Professor(email, "password", lastname, firstname, localDate, tel);
+            hibernate.save(professor);
 
-        if (classes != null) {
-            for (String className : classes) {
-                System.out.println(className);
-            }
+//            for (String className : classes) {
+//                course = new Course(className, professor);
+//
+//                hibernate.save(course);
+//            }
         }
 
 
         resp.sendRedirect("professors");
 
-        // TODO: ajouter la personne dans la bdd
-
-
-
-
-
-
     }
-
 
 }

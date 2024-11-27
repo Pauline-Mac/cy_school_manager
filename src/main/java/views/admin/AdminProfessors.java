@@ -41,8 +41,6 @@ public class AdminProfessors extends HttpServlet {
 			HibernateInvoker invoker = HibernateFacade.getInstance().hibernate;
 			List<HibernateEntity> professors = invoker.getAll(Professor.class);
 
-			System.out.println("professors: " + professors);
-
 			request.setAttribute("user_role", "PROFESSOR");
 			request.setAttribute("users", professors);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/professors/professors.jsp").forward(request, response);

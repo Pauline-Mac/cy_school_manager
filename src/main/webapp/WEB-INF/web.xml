@@ -214,6 +214,10 @@
         <servlet-name>AdminUpdateUser</servlet-name>
         <url-pattern>/admin/update-user</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminUpdateUser</servlet-name>
+        <url-pattern>/admin/update-user-post</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>RemoveUser</servlet-name>
