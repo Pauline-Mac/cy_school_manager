@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
+
 <div class="notes-main-div">
-<table class="user-notes-table">
+  <table class="user-notes-table">
     <tr><th>Date</th><th>Matière</th><th>Libellé</th><th>Note</th></tr>
     <c:forEach var="matiere" items="${matieres}">
     <tr>
@@ -18,5 +20,5 @@
         </td>
     </tr>
     </c:forEach>
-</table>
+  </table>
 </div>

@@ -8,6 +8,8 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <request-character-encoding>UTF-8</request-character-encoding>
+
     <!-- Routes -->
     <!-- SERVLET NAMES MUST BE UNIQUE -->
     <!--
@@ -37,6 +39,15 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HibernateInitialize</servlet-name>
+        <servlet-class>views.services.hibernate.HibernateInitialize</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HibernateInitialize</servlet-name>
+        <url-pattern>/hibernate/initialize</url-pattern>
     </servlet-mapping>
 
     <servlet>

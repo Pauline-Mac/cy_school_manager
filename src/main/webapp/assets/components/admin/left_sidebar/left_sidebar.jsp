@@ -1,3 +1,5 @@
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 <aside class="left-sidebar">
 	<nav class="container">
 		<a href="students"><div class="item">Etudiants</div></a>

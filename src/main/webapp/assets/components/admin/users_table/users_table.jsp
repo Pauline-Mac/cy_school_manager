@@ -3,8 +3,10 @@
 <%@ page import="services.hibernate.HibernateFacade" %>
 <%@ page import="models.HibernateEntity" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
+
 <div class="users-table-div">
-<table class="users-table">
+ <table class="users-table">
 	<tr>
 		<th>Email</th>
 		<th>Nom</th>
