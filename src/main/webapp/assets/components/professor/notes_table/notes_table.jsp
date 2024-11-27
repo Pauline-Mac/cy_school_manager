@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<div class="notes-table-div">
 <table class="professor-notes-table">
     <tr><th>Date</th><th>Matière</th><th>Nom et class de l'étudiant</th><th>Note</th></tr>
     <c:forEach var="notes" items="${notes}">
@@ -18,3 +19,4 @@
     </tr>
     </c:forEach>
 </table>
+</div>

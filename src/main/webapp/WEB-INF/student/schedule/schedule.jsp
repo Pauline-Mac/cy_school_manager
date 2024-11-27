@@ -16,12 +16,12 @@
 </head>
 <body>
 <div class="layout">
-    <%@ include file='/assets/components/student/left_sidebar/left_sidebar.jsp' %>
+    <jsp:include page='/assets/components/student/header/header.jsp'/>
 
     <main class="container">
-        <jsp:include page='/assets/components/student/header/header.jsp'/>
+        <%@ include file='/assets/components/student/left_sidebar/left_sidebar.jsp' %>
         <div class="inner-container">
-            <main class="notes-main">
+            <div class="notes-main">
                 <h1>Emploi du temps</h1><br>
                 <c:forEach var="course" items="${classes}">
                 <ul>
@@ -29,10 +29,10 @@
 
                 </ul>
                 </c:forEach>
-            </main>
-            <jsp:include page='/assets/components/footer/footer.jsp'/>
+            </div>
         </div>
     </main>
+    <jsp:include page='/assets/components/footer/footer.jsp'/>
 </div>
 </body>
 </html>

@@ -36,14 +36,14 @@ public class AdminStudents extends HttpServlet {
 		try {
 			HibernateInvoker invoker = HibernateFacade.getInstance().hibernate;
 
-//			invoker.save(new Student(LocalDateTime.now().toString(), "password", "CY", "Prof", LocalDate.now(), "000-0000", new StudentGroup("1")));
 
 			List<HibernateEntity> students = invoker.getAll(Student.class);
 			request.setAttribute("users", students);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/students/students.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("error", "Unable to retrieve student information: " + e.getMessage());
-			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/students").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/students/students.jsp").forward(request, response);
+			e.printStackTrace();
 		}
 	}
 

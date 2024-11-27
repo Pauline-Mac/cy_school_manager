@@ -172,6 +172,66 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>AddUser</servlet-name>
+        <servlet-class>views.admin.AddUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddUser</servlet-name>
+        <url-pattern>/admin/adduser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddUser</servlet-name>
+        <url-pattern>/admin/adduserpost</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShowUser</servlet-name>
+        <servlet-class>views.admin.ShowUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowUser</servlet-name>
+        <url-pattern>/admin/show-user</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminUpdateUser</servlet-name>
+        <servlet-class>views.admin.UpdateUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUpdateUser</servlet-name>
+        <url-pattern>/admin/update-user</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RemoveUser</servlet-name>
+        <servlet-class>views.admin.RemoveUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RemoveUser</servlet-name>
+        <url-pattern>/admin/remove-user</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>User</servlet-name>
+        <servlet-class>controllers.UserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>User</servlet-name>
+        <url-pattern>/user</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateUser</servlet-name>
+        <servlet-class>controllers.UserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateUser</servlet-name>
+        <url-pattern>/update-user</url-pattern>
+    </servlet-mapping>
+
+
     <filter>
         <filter-name>AdminAuthenticationFilter</filter-name>
         <filter-class>views.AdminAuthenticationFilter</filter-class>
