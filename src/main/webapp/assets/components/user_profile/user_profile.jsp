@@ -1,3 +1,4 @@
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 <form class="user-profile" action="profile" method="POST">
 	<div class="login-form-container">
 		<h1 class="title">Mes coordonn�es</h1>

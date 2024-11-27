@@ -1,3 +1,4 @@
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 <header class="professor-header">
 	<a href="${pageContext.request.contextPath}/professor/index"><div class="logo"><h1>CY School Manager</h1></div></a>
 	<a href="${pageContext.request.contextPath}/professor/profile">

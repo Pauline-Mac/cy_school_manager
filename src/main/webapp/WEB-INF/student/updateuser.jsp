@@ -1,3 +1,4 @@
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 <%@ page import="models.User" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.text.SimpleDateFormat" %>

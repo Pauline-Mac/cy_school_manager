@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 
 <table class="users-table">
 	<tr>
