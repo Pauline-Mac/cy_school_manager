@@ -50,9 +50,14 @@
 
         </div>
 
-        <input type="text" id="add-class-input" class="add-user-input">
-        <input type="button" onclick="addClass()" value="Ajouter" class="add-class-button add-user-input">
 
+
+        <input type="text" id="add-class-input" class="add-user-input" oninput="classSearch()">
+<%--        <input type="button" onclick="addClass()" value="Ajouter" class="add-class-button add-user-input">--%>
+
+        <div class="class-suggestions" id="class-suggestions">
+
+        </div>
 
 
 
