@@ -29,7 +29,7 @@
 
 					<div class="users-title">
 						<h1>Professeurs</h1>
-						<a href="adduser">Ajouter un professeur</a>
+						<a class="add-user-link" href="adduser">Ajouter un professeur</a>
 					</div>
 
 					<jsp:include page='/assets/components/admin/users_table/users_table.jsp'/>
