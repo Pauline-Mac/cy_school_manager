@@ -155,4 +155,9 @@ public class User implements HibernateEntity {
     public void setRole(String phone) {
         this.role = role;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return uuid.equals(((User) obj).getUuid()) || userId.equals(((User) obj).getUserId());
+    }
 }

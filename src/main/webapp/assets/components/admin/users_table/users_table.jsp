@@ -1,19 +1,25 @@
+<%@ page import="java.util.List" %>
+<%@ page import="models.User" %>
+<%@ page import="services.hibernate.HibernateFacade" %>
+<%@ page import="models.HibernateEntity" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:directive.page contentType="text/html; charset=UTF-8" />
 
-<table class="users-table">
+<div class="users-table-div">
+ <table class="users-table">
 	<tr>
 		<th>Email</th>
 		<th>Nom</th>
 		<th>Prenom</th>
 		<th><c:choose>
-			<c:when test="${users[0].role == 'PROFESSOR'}">
+			<c:when test="${user_role == 'PROFESSOR'}">
 				Cours
 			</c:when>
 			<c:otherwise>
 				Classe
 			</c:otherwise>
 		</c:choose></th>
+		<th colspan="3">Action</th>
 	</tr>
 
 	<c:forEach items="${users}" var="user">
@@ -58,6 +64,10 @@
 					</div>
 				</a>
 			</td>
+			<td><a href="show-user?uuid=${user.uuid}">Afficher</a></td>
+			<td><a href="update-user?uuid=${user.uuid}">Modifier</a></td>
+			<td><a href="remove-user?uuid=${user.uuid}">Supprimer</a></td>
 		</tr>
 	</c:forEach>
 </table>
+</div>

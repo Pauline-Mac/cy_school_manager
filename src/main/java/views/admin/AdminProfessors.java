@@ -13,6 +13,9 @@ import services.hibernate.HibernateFacade;
 import services.hibernate.HibernateInvoker;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,11 +40,14 @@ public class AdminProfessors extends HttpServlet {
 		try {
 			HibernateInvoker invoker = HibernateFacade.getInstance().hibernate;
 			List<HibernateEntity> professors = invoker.getAll(Professor.class);
+
+			request.setAttribute("user_role", "PROFESSOR");
 			request.setAttribute("users", professors);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/professors/professors.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("error", "Unable to retrieve student information: " + e.getMessage());
-			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/professors/professors/professors.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/professors/professors.jsp").forward(request, response);
+			e.printStackTrace();
 		}
 	}
 

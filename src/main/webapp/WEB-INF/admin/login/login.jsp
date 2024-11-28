@@ -14,6 +14,8 @@
 
 </head>
 <body>
+
+<div class="layout">
 	<jsp:include page='/assets/components/header/header.jsp'/>
 	
 	<main class="login-main">
@@ -27,5 +29,7 @@
 	</main>
 
 	<jsp:include page="/assets/components/footer/footer.jsp"/>
+
+</div>
 </body>
 </html>

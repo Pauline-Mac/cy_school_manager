@@ -13,15 +13,16 @@
 		<link href="${pageContext.request.contextPath}/assets/components/user_profile/user_profile.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<div class="container">
-			<jsp:include page='/assets/components/student/header/header.jsp'/>
+	<div class="layout">
+		<jsp:include page='/assets/components/student/header/header.jsp'/>
+		<main class="container">
 			<%@ include file='/assets/components/student/left_sidebar/left_sidebar.jsp' %>
 			<div class="inner-container">
-				<main>
-					<%@ include file='/assets/components/user_profile/user_profile.jsp' %>
-				</main>
-				<jsp:include page='/assets/components/footer/footer.jsp'/>
+				<%@ include file='/assets/components/user_profile/user_profile.jsp' %>
+
 			</div>
-		</div>
+		</main>
+		<jsp:include page='/assets/components/footer/footer.jsp'/>
+	</div>
 	</body>
 </html>

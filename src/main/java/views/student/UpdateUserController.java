@@ -1,4 +1,4 @@
-package views.student;
+package views.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

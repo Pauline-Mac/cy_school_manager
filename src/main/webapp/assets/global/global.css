@@ -5,19 +5,21 @@
 
 html {
 	min-width: 100%;
-	max-width: 100vw;
-	min-height: 100vh;
+	/*max-width: 100vw;*/
+	/*min-height: 100vh;*/
+	scroll-behavior: smooth;
 }
 
 body {
 	overflow-x: hidden;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	margin: 0px;
+	/*position: absolute;*/
+	/*top: 0px;*/
+	/*left: 0px;*/
+	margin: 0;
 	padding: 0;
 	min-width: 100%;
-	max-width: 100vw;
+	/*max-width: 100vw;*/
+	/*min-height: 100vw;*/
 	background-color: #F5F5F5;
 }
 
@@ -28,4 +30,8 @@ a {
 
 hr, h1, h2, h3, h4 {
 	margin: 0;
+}
+
+.layout {
+
 }

@@ -1,0 +1,104 @@
+
+.add-form {
+    padding: 20px;
+    border: 1px solid black;
+    font-size: 20px;
+    width: fit-content;
+    border-radius: 10px;
+}
+
+
+.add-form tr * {
+    margin: 5px 5px;
+}
+
+
+
+.add-user-form-title {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0 30px 0;
+}
+
+.add-user-form-button, .add-class-button {
+    background: #379523;
+    color: #fff;
+    border: 0;
+    border-radius: 2px;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+}
+.add-user-form-button:hover {
+    cursor: pointer;
+}
+
+.add-class {
+    margin: 20px 0;
+}
+
+.class-button {
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.class-tag {
+    display: flex;
+    margin: 5px 0;
+    width: fit-content;
+    padding: 5px;
+    border: 1px solid #454545;
+    border-radius: 2px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.class-tag .class-id {
+    width: fit-content;
+    margin-right: 5px;
+}
+
+.class-tag .class-button {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.add-class-button {
+    cursor: pointer;
+}
+
+.add-user-input-table {
+    width: 100%;
+}
+
+.add-user-input, .class-tag {
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.class-button {
+    padding: 2px;
+    height: 100%;
+}
+
+#class-example {
+    display: none;
+}
+
+.class-suggestions {
+    /*position: absolute;*/
+    margin-top: 10px;
+}
+
+.class-suggestion {
+    font-size: 15px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.class-suggestion:hover {
+    font-weight: bold;
+    background: #5A81C4;
+}
