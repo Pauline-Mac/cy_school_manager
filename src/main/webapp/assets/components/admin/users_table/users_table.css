@@ -40,9 +40,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    min-height: 3em;
 }
 
 .users-table-div {
     overflow-y: scroll;
     max-height: 80vh;
+}
+
+.users-title {
+    margin: 20px 0;
+}
+
+.users-title h1 {
+    padding: 10px 0;
 }

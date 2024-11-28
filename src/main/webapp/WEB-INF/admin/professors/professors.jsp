@@ -27,7 +27,7 @@
 			<div class="inner-container">
 				<div class="users-main">
 
-					<div>
+					<div class="users-title">
 						<h1>Professeurs</h1>
 						<a href="adduser">Ajouter un professeur</a>
 					</div>
