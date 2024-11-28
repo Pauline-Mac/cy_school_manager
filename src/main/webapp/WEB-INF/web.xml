@@ -32,6 +32,17 @@
     -->
 
     <servlet>
+        <servlet-name>ProfessorAddnotes</servlet-name>
+        <servlet-class>views.professor.ProfessorAddNote</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ProfessorAddnotes</servlet-name>
+        <url-pattern>/professor/addnote</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>views.Login</servlet-class>
     </servlet>
@@ -93,6 +104,22 @@
         <servlet-name>AdminStudents</servlet-name>
         <url-pattern>/admin/students</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminAddClass</servlet-name>
+        <servlet-class>views.admin.AdminAddClass</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminAddClass</servlet-name>
+        <url-pattern>/admin/addclass</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminAddEnrollment</servlet-name>
+        <servlet-class>views.admin.AdminAddEnrollment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminAddEnrollment</servlet-name>
+        <url-pattern>/admin/addenrollment</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>StudentIndex</servlet-name>
@@ -132,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>StudentSchedule</servlet-name>
         <url-pattern>/student/schedule</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudentNoteExport</servlet-name>
+        <servlet-class>views.student.StudentNotesExport</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentNoteExport</servlet-name>
+        <url-pattern>/student/notes/export</url-pattern>
     </servlet-mapping>
 
     <servlet>

@@ -102,8 +102,16 @@ public class Course implements HibernateEntity{
         this.updatedAt = updatedAt;
     }
 
+    public List<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(List<Enrollment> enrollments) {
+        this.enrollments = enrollments;
+
     @Override
     public boolean equals(Object obj) {
         return classId.equals(((Course) obj).classId);
+
     }
 }

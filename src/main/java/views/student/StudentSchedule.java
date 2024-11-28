@@ -37,10 +37,10 @@ public class StudentSchedule extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			HibernateInvoker invoker = HibernateFacade.getInstance().hibernate;
+			HibernateFacade facade = HibernateFacade.getInstance();
 			Student student = (Student) request.getSession().getAttribute("user");
 
-			List<Enrollment> enrollments = invoker.getEnrollmentByStudent(student);
+			List<Enrollment> enrollments = facade.getEnrollmentsByStudent(student);
 
 			List<Course> courses = new ArrayList<>();
 			for (Enrollment enrollment : enrollments) {

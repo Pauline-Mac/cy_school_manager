@@ -4,7 +4,6 @@ import models.*;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-
 import org.xhtmlrenderer.pdf.ITextRenderer;
 import services.hibernate.HibernateFacade;
 
@@ -12,11 +11,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.*;
+
 public class PdfGenerator {
 
-    private static final String REPORTS_DIRECTORY = "src/main/webapp/reports";
+    private static final String REPORTS_DIRECTORY = "C:/tomcat/reports";
 
-    public static void generateReportForStudent(Student student) {
+    public static String generateReportForStudent(Student student) {
+        String pdfPath = null;
         try {
             Map<String, Object> data = prepareData(student);
             TemplateEngine templateEngine = configureTemplateEngine();
@@ -34,7 +35,7 @@ public class PdfGenerator {
                     student.getFirstName(),
                     student.getLastName());
 
-            String pdfPath = new File(reportsDir, fileName).getAbsolutePath();
+            pdfPath = new File(reportsDir, fileName).getAbsolutePath();
 
             generatePdf(renderedHtml, pdfPath);
 
@@ -44,6 +45,7 @@ public class PdfGenerator {
             System.err.println("Erreur lors de la génération du PDF :");
             e.printStackTrace();
         }
+        return pdfPath;
     }
 
     private static Map<String, Object> prepareData(Student student) {
@@ -88,14 +90,11 @@ public class PdfGenerator {
                 ? totalMoyennes / nombreMatieresAvecNotes
                 : 0;
 
-
         data.put("matieres", matieres);
         data.put("moyenne", nombreMatieresAvecNotes > 0 ? String.format("%.2f", moyenneGenerale) : "Non calculable");
 
         return data;
     }
-
-
 
     private static void generatePdf(String htmlContent, String outputPath) throws Exception {
         try (FileOutputStream fos = new FileOutputStream(outputPath)) {
@@ -105,7 +104,6 @@ public class PdfGenerator {
             renderer.createPDF(fos);
         }
     }
-
 
     private static TemplateEngine configureTemplateEngine() {
         ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
