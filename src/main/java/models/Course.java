@@ -108,6 +108,7 @@ public class Course implements HibernateEntity{
 
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
+    }
 
     @Override
     public boolean equals(Object obj) {
