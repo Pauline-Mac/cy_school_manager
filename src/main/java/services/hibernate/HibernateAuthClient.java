@@ -45,6 +45,37 @@ public class HibernateAuthClient {
         }
     }
 
+
+
+
+    public List<Professor> searchProfessorByCriteria(String firstname, String lastname, String email) {
+        String hql = "SELECT p FROM Professor p WHERE 1=1";
+
+        if (firstname != null && !firstname.isEmpty()) {
+            hql += " AND LOWER(p.firstName) LIKE :firstname";
+        }
+        if (lastname != null && !lastname.isEmpty()) {
+            hql += " AND LOWER(p.lastName) LIKE :lastname";
+        }
+        if (email != null && !email.isEmpty()) {
+            hql += " AND LOWER(p.email) LIKE :email";
+        }
+
+        Query<Professor> query = session.createQuery(hql, Professor.class);
+
+        if (firstname != null && !firstname.isEmpty()) {
+            query.setParameter("firstname", firstname.toLowerCase() + "%");
+        }
+        if (lastname != null && !lastname.isEmpty()) {
+            query.setParameter("lastname", lastname.toLowerCase() + "%");
+        }
+        if (email != null && !email.isEmpty()) {
+            query.setParameter("email", email.toLowerCase() + "%");
+        }
+
+        return query.list();
+    }
+
     public List<Student> searchStudentByCriteria(String firstname, String lastname, String studentgroupname, String classname) {
         String hql = "SELECT s FROM Student s WHERE 1=1";
 

@@ -23,6 +23,11 @@ public class HibernateReceiver {
         return instance;
     }
 
+
+    public List<Professor> searchProfessorByCriteria(String firstname, String lastname, String email){
+        return client.searchProfessorByCriteria(firstname, lastname, email);
+    }
+
     public List<Student> searchStudentByCriteria(String firstname, String lastname, String studentgroupname, String classname){
         return client.searchStudentByCriteria(firstname, lastname, studentgroupname, classname);
     }

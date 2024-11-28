@@ -23,7 +23,7 @@
         <div class="inner-container">
             <main class="notes-main">
                 <h1>Mes notes</h1><br>
-                <a href="/student/notes/export"><div class="button">Télécharger mes Notes PDF</div></a>
+                <a href="notes/export"><div class="button">Télécharger mes Notes PDF</div></a>
                 <jsp:include page='/assets/components/student/notes_table/notes_table.jsp'/>
             </main>
             <jsp:include page='/assets/components/footer/footer.jsp'/>

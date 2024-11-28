@@ -33,7 +33,7 @@ public class AdminAddEnrollment extends HttpServlet {
 			String prenom = request.getParameter("prenom");
 			String studentGroupName = request.getParameter("studentgroupname");
 
-			List<Student> resultats = hibernate.searchStudentByCriteria(nom, prenom, studentGroupName, null);
+			List<Student> resultats = hibernate.searchStudentByCriteria(prenom, nom, studentGroupName, null);
 			request.setAttribute("resultats", resultats);
 
 		} else if ("choisir class".equals(action)) {
@@ -71,7 +71,7 @@ public class AdminAddEnrollment extends HttpServlet {
 
 				Enrollment newEnrollment = new Enrollment(student, course);
 				hibernate.save(newEnrollment);
-				//course.enrollments.add(newEnrollment);
+				course.getEnrollments().add(newEnrollment);
                 try {
                     GMailer mailer = new GMailer();
 					mailer.sendNewInscriptionNotification(newEnrollment);

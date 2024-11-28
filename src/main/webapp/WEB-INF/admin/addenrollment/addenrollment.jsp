@@ -79,6 +79,13 @@
                     </form>
                 </c:if>
 
+                <c:if test="${not empty error}">
+                    <p style="color: red;">${error}</p>
+                </c:if>
+                <c:if test="${not empty message}">
+                    <p style="color: green;">${message}</p>
+                </c:if>
+
             </main>
         </div>
 

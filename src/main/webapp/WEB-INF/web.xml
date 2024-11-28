@@ -147,6 +147,14 @@
         <servlet-name>StudentSchedule</servlet-name>
         <url-pattern>/student/schedule</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>StudentNoteExport</servlet-name>
+        <servlet-class>views.student.StudentNotesExport</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentNoteExport</servlet-name>
+        <url-pattern>/student/notes/export</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>ProfessorIndex</servlet-name>
