@@ -214,6 +214,10 @@
         <servlet-name>AdminUpdateUser</servlet-name>
         <url-pattern>/admin/update-user</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminUpdateUser</servlet-name>
+        <url-pattern>/admin/update-user-post</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>RemoveUser</servlet-name>
@@ -241,7 +245,15 @@
         <servlet-name>UpdateUser</servlet-name>
         <url-pattern>/update-user</url-pattern>
     </servlet-mapping>
-
+    
+    <servlet>
+        <servlet-name>AjaxClassSearch</servlet-name>
+        <servlet-class>services.AjaxClassSearch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AjaxClassSearch</servlet-name>
+        <url-pattern>/class-search</url-pattern>
+    </servlet-mapping>
 
     <filter>
         <filter-name>AdminAuthenticationFilter</filter-name>

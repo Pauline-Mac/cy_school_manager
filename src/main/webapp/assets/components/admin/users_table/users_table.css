@@ -40,9 +40,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    min-height: 3em;
 }
 
 .users-table-div {
     overflow-y: scroll;
     max-height: 80vh;
+}
+
+.users-title {
+    margin: 20px 0;
+}
+
+.users-title h1 {
+    padding: 10px 0;
+}
+
+.add-user-link {
+    width: fit-content;
+    padding: 5px;
+    border: 1px solid #356817;
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    background: #379523;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
 }

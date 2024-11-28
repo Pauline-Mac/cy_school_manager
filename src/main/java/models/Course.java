@@ -101,4 +101,9 @@ public class Course implements HibernateEntity{
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return classId.equals(((Course) obj).classId);
+    }
 }

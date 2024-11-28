@@ -87,4 +87,18 @@
     display: none;
 }
 
+.class-suggestions {
+    /*position: absolute;*/
+    margin-top: 10px;
+}
 
+.class-suggestion {
+    font-size: 15px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.class-suggestion:hover {
+    font-weight: bold;
+    background: #5A81C4;
+}
