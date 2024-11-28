@@ -23,6 +23,9 @@ public class HibernateReceiver {
         return instance;
     }
 
+    public boolean delete(HibernateEntity entity) {
+        return client.delete(entity);
+    }
 
     public List<Professor> searchProfessorByCriteria(String firstname, String lastname, String email){
         return client.searchProfessorByCriteria(firstname, lastname, email);

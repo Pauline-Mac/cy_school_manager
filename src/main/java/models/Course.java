@@ -15,7 +15,7 @@ public class Course implements HibernateEntity{
     @Column(name = "class_id")
     private Long classId;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Enrollment> enrollments;
 
     @ManyToOne
@@ -108,6 +108,7 @@ public class Course implements HibernateEntity{
 
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
+    }
 
     @Override
     public boolean equals(Object obj) {
