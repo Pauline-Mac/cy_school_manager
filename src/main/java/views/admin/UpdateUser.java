@@ -44,9 +44,9 @@ public class UpdateUser extends HttpServlet {
 
         request.setAttribute("user", user);
         request.setAttribute("courseList", courseList);
+        request.getSession().setAttribute("courseList", courseList);
         request.getSession().setAttribute("update-user", user);
 
-        System.out.println("update " + uuid);
 
         getServletContext().getRequestDispatcher("/WEB-INF/admin/update_user/update_user.jsp").forward(request, response);
     }
@@ -54,7 +54,7 @@ public class UpdateUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         User user = (User) request.getSession().getAttribute("update-user");
-
+        List<Course> courseList = (List<Course>) request.getSession().getAttribute("courseList");
 
         if (!request.getParameter("first_name").isBlank())
             user.setFirstName(request.getParameter("first_name"));
@@ -73,6 +73,33 @@ public class UpdateUser extends HttpServlet {
 
         HibernateInvoker hibernate = HibernateFacade.getInstance().hibernate;
         hibernate.save(user);
+
+        if (user.getRole().equals("STUDENT")) {
+            String[] courses = request.getParameterValues("class[]");
+
+            boolean courseFound = true;
+            for (String strcourse : courses) {
+                courseFound = false;
+                for (int j = 0; j < courseList.size(); j++) {
+                    Course course = courseList.get(j);
+                    if (course.getClassId() == Integer.parseInt(strcourse)) {
+                        courseList.remove(course);
+                        courseFound = true;
+                    }
+                }
+                if (!courseFound) {
+                    Course course = (Course) HibernateFacade.getInstance().get(Course.class, Integer.parseInt(strcourse));
+                    Student student = (Student) HibernateFacade.getInstance().get(Student.class, user.getUserId().intValue());
+                    Enrollment enrollment = new Enrollment(student, course);
+
+                    HibernateFacade.getInstance().save(enrollment);
+                }
+
+            }
+
+            // courseList apres la boucle: liste des inscriptions a supprimer
+
+        }
 
         response.sendRedirect(request.getContextPath() + "/admin/index");
 
