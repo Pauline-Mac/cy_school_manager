@@ -4,14 +4,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.HibernateEntity;
-import models.User;
-import models.UserCrud;
+import models.*;
 import services.hibernate.HibernateFacade;
 import services.hibernate.HibernateInvoker;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateUser extends HttpServlet {
@@ -31,7 +30,20 @@ public class UpdateUser extends HttpServlet {
             user = (User) userList.get(0);
         }
 
+
+        assert user != null;
+        List<HibernateEntity> enrollmentList = HibernateFacade.getInstance().getAll(Enrollment.class);
+
+        List<Course> courseList = new ArrayList<>();
+
+        for (HibernateEntity e : enrollmentList) {
+            Enrollment enrollment = (Enrollment) e;
+            if (enrollment.getStudent().equals(user))
+                courseList.add(enrollment.getCourse());
+        }
+
         request.setAttribute("user", user);
+        request.setAttribute("courseList", courseList);
         request.getSession().setAttribute("update-user", user);
 
         System.out.println("update " + uuid);

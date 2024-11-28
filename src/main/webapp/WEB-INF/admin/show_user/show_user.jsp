@@ -82,7 +82,11 @@
                         <h4>Cours attribués</h4>
 
                         <div id="class-list">
-
+                            <c:forEach items="${courseList}" var="course" varStatus="status">
+                                <span class="class-tag">
+                                    <span class="class-id">${course.className}</span>
+                                </span>
+                            </c:forEach>
                         </div>
 
                     </div>

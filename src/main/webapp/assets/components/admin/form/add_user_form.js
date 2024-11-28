@@ -120,3 +120,7 @@ function clearSuggestions() {
         classSuggestionDiv.removeChild(classSuggestionDiv.firstChild);
     }
 }
+
+function removeElement(element) {
+    element.parentNode.parentNode.removeChild(element.parentNode);
+}
