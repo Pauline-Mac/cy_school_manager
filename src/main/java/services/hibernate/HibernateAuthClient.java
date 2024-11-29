@@ -45,7 +45,22 @@ public class HibernateAuthClient {
         }
     }
 
-
+    public Boolean delete(HibernateEntity entity) {
+        if (entity == null) {
+            System.err.println("Entity is null");
+            return false;
+        }
+        try {
+            Transaction tx = session.beginTransaction();
+            session.remove(entity);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
     public List<Professor> searchProfessorByCriteria(String firstname, String lastname, String email) {

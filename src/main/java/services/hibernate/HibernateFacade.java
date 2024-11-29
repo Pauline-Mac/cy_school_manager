@@ -25,6 +25,9 @@ public class HibernateFacade {
         return instance;
     }
 
+    public boolean delete(HibernateEntity entity) {
+        return hibernate.delete(entity);
+    }
 
     public List<Professor> searchProfessorByCriteria(String firstname, String lastname, String email) {
         return hibernate.searchProfessorByCriteria(firstname, lastname, email);

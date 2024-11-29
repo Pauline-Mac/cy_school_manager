@@ -15,6 +15,11 @@ import java.util.List;
 public class HibernateInvoker {
     HibernateCommand command;
 
+    public Boolean delete(HibernateEntity entity) {
+        Delete deleteCommand = new Delete(entity);
+        return (Boolean) executeCommand(deleteCommand);
+    }
+
     public List<Professor> searchProfessorByCriteria(String firstname, String lastname, String email){
         return (List<Professor>) executeCommand(new SearchProfessorByCriteria(firstname, lastname, email));
     }
