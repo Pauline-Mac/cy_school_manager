@@ -77,6 +77,7 @@ public class UpdateUser extends HttpServlet {
         if (user.getRole().equals("STUDENT")) {
             String[] courses = request.getParameterValues("class[]");
 
+            if (courses != null) {
             boolean courseFound = true;
             for (String strcourse : courses) {
                 courseFound = false;
@@ -94,11 +95,20 @@ public class UpdateUser extends HttpServlet {
 
                     HibernateFacade.getInstance().save(enrollment);
                 }
-
             }
-
-            // courseList apres la boucle: liste des inscriptions a supprimer
-
+            }
+            for (Course course : courseList) {
+                List<Enrollment> enrollments = hibernate.getEnrollmentByStudent((Student) user);
+                assert enrollments != null;
+                for (Enrollment enrollment : enrollments) {
+                    for (Course course1 : courseList) {
+                        if (course1.getClassName().equals(enrollment.getCourse().getClassName())) {
+                            course1.getEnrollments().remove(enrollment);
+                            hibernate.delete(enrollment);
+                        }
+                    }
+                }
+            }
         }
 
         response.sendRedirect(request.getContextPath() + "/admin/index");
