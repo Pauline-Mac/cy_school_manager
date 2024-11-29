@@ -75,14 +75,21 @@ public class RemoveUser extends HttpServlet {
                 throw new IllegalArgumentException("Unsupported role for deletion: " + user.getRole());
             }
 
-            response.sendRedirect(request.getContextPath() + "/admin/index");
+            request.getSession().setAttribute("success", "Suppression effectuée avec succès");
+            request.getSession().removeAttribute("error");
+
 
         } catch (Exception e) {
             request.setAttribute("errorMessage", e.getMessage());
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+
+            request.getSession().setAttribute("error", "Echec lors de la suppresison d'un utilisateur");
+            request.getSession().removeAttribute("success");
+//            request.getRequestDispatcher("/error.jsp").forward(request, response);
 
             e.printStackTrace();
         }
+
+        response.sendRedirect(request.getContextPath() + "/admin/index");
     }
 
 }
