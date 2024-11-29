@@ -61,7 +61,17 @@ public class AddUser extends HttpServlet {
 
         if (role.equals("student")) {
 
-            StudentGroup studentGroup = (StudentGroup) HibernateFacade.getInstance().getAllWhere(StudentGroup.class, "studentGroupName", groupId).get(0);
+            List<HibernateEntity> studentGroupList = HibernateFacade.getInstance().getAllWhere(StudentGroup.class, "studentGroupName", groupId);
+            StudentGroup studentGroup = null;
+
+            if (studentGroupList.size() > 0) {
+                studentGroup = (StudentGroup) studentGroupList.get(0);
+            }
+            else {
+                studentGroup = new StudentGroup(groupId);
+                hibernate.save(studentGroup);
+            }
+
             student = new Student(email, "password", lastname, firstname, localDate, tel, studentGroup);
             hibernate.save(student);
 
