@@ -1,6 +1,8 @@
 package models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,10 +20,12 @@ public class Enrollment implements HibernateEntity{
 
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Student student;
 
     @ManyToOne
     @JoinColumn(name = "class_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Course course;
 
     @OneToMany(mappedBy = "enrollment", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)

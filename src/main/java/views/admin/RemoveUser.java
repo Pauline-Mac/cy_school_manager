@@ -63,8 +63,6 @@ public class RemoveUser extends HttpServlet {
                                 hibernate.delete(note);
                             }
 
-                            course.getEnrollments().remove(enrollment);
-                            hibernate.delete(enrollment);
                         }
 
                         professor.getCourses().remove(course);
