@@ -1,5 +1,6 @@
 package views.admin;
 
+import com.google.api.services.gmail.Gmail;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.*;
 import services.hibernate.HibernateFacade;
 import services.hibernate.HibernateInvoker;
+import services.mailing.GMailer;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -56,6 +58,7 @@ public class UpdateUser extends HttpServlet {
         User user = (User) request.getSession().getAttribute("update-user");
         List<Course> courseList = (List<Course>) request.getSession().getAttribute("courseList");
 
+
         if (!request.getParameter("first_name").isBlank())
             user.setFirstName(request.getParameter("first_name"));
         if (!request.getParameter("last_name").isBlank())
@@ -74,9 +77,16 @@ public class UpdateUser extends HttpServlet {
         HibernateInvoker hibernate = HibernateFacade.getInstance().hibernate;
         hibernate.save(user);
 
+        try {
+            GMailer mailer = new GMailer();
+            mailer.sendInfoModificationConfirmation(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         if (user.getRole().equals("STUDENT")) {
             String[] courses = request.getParameterValues("class[]");
-
+            boolean coursesModif = false;
             if (courses != null) {
             boolean courseFound = true;
             for (String strcourse : courses) {
@@ -92,11 +102,12 @@ public class UpdateUser extends HttpServlet {
                     Course course = (Course) HibernateFacade.getInstance().get(Course.class, Integer.parseInt(strcourse));
                     Student student = (Student) HibernateFacade.getInstance().get(Student.class, user.getUserId().intValue());
                     Enrollment enrollment = new Enrollment(student, course);
-
+                    if(!coursesModif){coursesModif = true;}
                     HibernateFacade.getInstance().save(enrollment);
                 }
             }
             }
+
             for (Course course : courseList) {
                 List<Enrollment> enrollments = hibernate.getEnrollmentByStudent((Student) user);
                 assert enrollments != null;
@@ -104,12 +115,23 @@ public class UpdateUser extends HttpServlet {
                     for (Course course1 : courseList) {
                         if (course1.getClassName().equals(enrollment.getCourse().getClassName())) {
                             course1.getEnrollments().remove(enrollment);
+                            if(!coursesModif){coursesModif = true;}
                             hibernate.delete(enrollment);
                         }
                     }
                 }
             }
+
+            try {
+                GMailer mailer = new GMailer();
+                mailer.sendClassModification((Student) user);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+
         }
+
 
         response.sendRedirect(request.getContextPath() + "/admin/index");
 
