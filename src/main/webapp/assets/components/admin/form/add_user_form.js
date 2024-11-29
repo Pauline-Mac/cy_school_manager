@@ -41,16 +41,19 @@ function onRoleChange() {
     const tr = document.getElementById("group-id-tr");
     const input = document.getElementById("group_id");
     const role = document.getElementById("role");
+    const addClass = document.getElementById("add-class");
 
 
     switch (role.value) {
         case "professor":
             tr.style.display = "none";
             input.disabled = false;
+            addClass.style.display = "none";
             break;
         case "student":
             tr.style.display = "";
             input.disabled = true;
+            addClass.style.display = "block";
             break;
         default:
             break;

@@ -42,7 +42,7 @@
         </tr>
     </table>
 
-    <div class="add-class">
+    <div class="add-class" id="add-class">
 
         <h4>Ajouter des cours</h4>
 
