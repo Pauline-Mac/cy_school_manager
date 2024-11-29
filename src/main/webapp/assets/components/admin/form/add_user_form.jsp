@@ -1,4 +1,4 @@
-
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 <form class="add-form" action="adduserpost" method="post">
 
     <div class="add-user-form-title">
