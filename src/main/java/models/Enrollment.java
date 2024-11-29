@@ -24,7 +24,7 @@ public class Enrollment implements HibernateEntity{
     @JoinColumn(name = "class_id", nullable = false)
     private Course course;
 
-    @OneToMany(mappedBy = "enrollment")
+    @OneToMany(mappedBy = "enrollment", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Note> notes;
 
     @Column(name = "created_at")

@@ -45,6 +45,94 @@ public class HibernateAuthClient {
         }
     }
 
+    public Boolean delete(HibernateEntity entity) {
+        if (entity == null) {
+            System.err.println("Entity is null");
+            return false;
+        }
+        try {
+            Transaction tx = session.beginTransaction();
+            session.remove(entity);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public List<Professor> searchProfessorByCriteria(String firstname, String lastname, String email) {
+        String hql = "SELECT p FROM Professor p WHERE 1=1";
+
+        if (firstname != null && !firstname.isEmpty()) {
+            hql += " AND LOWER(p.firstName) LIKE :firstname";
+        }
+        if (lastname != null && !lastname.isEmpty()) {
+            hql += " AND LOWER(p.lastName) LIKE :lastname";
+        }
+        if (email != null && !email.isEmpty()) {
+            hql += " AND LOWER(p.email) LIKE :email";
+        }
+
+        Query<Professor> query = session.createQuery(hql, Professor.class);
+
+        if (firstname != null && !firstname.isEmpty()) {
+            query.setParameter("firstname", firstname.toLowerCase() + "%");
+        }
+        if (lastname != null && !lastname.isEmpty()) {
+            query.setParameter("lastname", lastname.toLowerCase() + "%");
+        }
+        if (email != null && !email.isEmpty()) {
+            query.setParameter("email", email.toLowerCase() + "%");
+        }
+
+        return query.list();
+    }
+
+    public List<Student> searchStudentByCriteria(String firstname, String lastname, String studentgroupname, String classname) {
+        String hql = "SELECT s FROM Student s WHERE 1=1";
+
+        if (firstname != null && !firstname.isEmpty()) {
+            hql += " AND LOWER(s.firstName) LIKE :firstname";
+        }
+        if (lastname != null && !lastname.isEmpty()) {
+            hql += " AND LOWER(s.lastName) LIKE :lastname";
+        }
+        if (studentgroupname != null && !studentgroupname.isEmpty()) {
+            hql += " AND LOWER(s.studentGroup.studentGroupName) LIKE :studentgroupname";
+        }
+        if (classname != null && !classname.isEmpty()) {
+            hql += " AND EXISTS (" +
+                    "   SELECT e FROM Enrollment e " +
+                    "   JOIN e.course c " +
+                    "   WHERE e.student = s AND LOWER(c.className) LIKE :classname" +
+                    ")";
+        }
+
+        Query<Student> query = session.createQuery(hql, Student.class);
+
+        if (firstname != null && !firstname.isEmpty()) {
+            query.setParameter("firstname", firstname.toLowerCase() + "%");
+        }
+        if (lastname != null && !lastname.isEmpty()) {
+            query.setParameter("lastname", lastname.toLowerCase() + "%");
+        }
+        if (studentgroupname != null && !studentgroupname.isEmpty()) {
+            query.setParameter("studentgroupname", studentgroupname.toLowerCase() + "%");
+        }
+        if (classname != null && !classname.isEmpty()) {
+            query.setParameter("classname", classname.toLowerCase() + "%");
+        }
+
+        return query.list();
+    }
+
+
+
+
+
     public Long getCountStudentByClass(Course course) {
         String hql = "SELECT COUNT(e.student.id) " +
                 "FROM Enrollment e " +

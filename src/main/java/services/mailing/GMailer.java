@@ -13,6 +13,7 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
+import models.Enrollment;
 import org.apache.commons.codec.binary.Base64;
 import models.Student;
 import models.User;
@@ -119,16 +120,12 @@ public class GMailer {
                     student.getEmail());
         }
 
-        public void sendNewInscriptionNotification(Student student) throws Exception {
+        public void sendNewInscriptionNotification(Enrollment enrollment) throws Exception {
 
             sendMail("Validation de l'inscription",
-                    "Bonjour " +student.getFirstName()+" "+student.getLastName()+
-                            ",\n Votre inscription scolaire a été validée",
-                    student.getEmail());
-        }
-
-        public static void main(String[] args) throws Exception {
-            new GMailer().sendMail("A new message", "message", "pauline.maceiras@gmail.com");
+                    "Bonjour " +enrollment.getStudent().getFirstName()+" "+enrollment.getStudent().getLastName()+
+                            ",\n Votre inscription scolaire a été validée pour le cours : "+enrollment.getCourse().getClassName()+ " avec le ou la professeur "+enrollment.getCourse().getProfessor().getLastName(),
+                    enrollment.getStudent().getEmail());
         }
 
     }

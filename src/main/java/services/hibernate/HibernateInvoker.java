@@ -15,6 +15,18 @@ import java.util.List;
 public class HibernateInvoker {
     HibernateCommand command;
 
+    public Boolean delete(HibernateEntity entity) {
+        Delete deleteCommand = new Delete(entity);
+        return (Boolean) executeCommand(deleteCommand);
+    }
+
+    public List<Professor> searchProfessorByCriteria(String firstname, String lastname, String email){
+        return (List<Professor>) executeCommand(new SearchProfessorByCriteria(firstname, lastname, email));
+    }
+
+    public List<Student> searchStudentByCriteria(String firstname, String lastname, String studentgroupname, String classname){
+        return (List<Student>) executeCommand(new SearchStudentByCriteria(firstname, lastname, studentgroupname, classname));
+    }
 
     public Long getCountStudentByClass(Course course) {
 

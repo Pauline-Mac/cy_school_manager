@@ -9,6 +9,7 @@ import models.*;
 import services.authentication.AuthService;
 import services.hibernate.HibernateFacade;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Servlet implementation class AdminLogin
@@ -40,7 +41,7 @@ public class Login extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		HibernateFacade hibernate = HibernateFacade.getInstance();
-		
+
 		try {
 			User user = (User) hibernate.getAllWhere(User.class, "email", email).get(0);
 			if(new AuthService().authenticate(user, email, password)) {

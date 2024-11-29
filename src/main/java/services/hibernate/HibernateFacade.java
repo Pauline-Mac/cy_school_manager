@@ -25,6 +25,18 @@ public class HibernateFacade {
         return instance;
     }
 
+    public boolean delete(HibernateEntity entity) {
+        return hibernate.delete(entity);
+    }
+
+    public List<Professor> searchProfessorByCriteria(String firstname, String lastname, String email) {
+        return hibernate.searchProfessorByCriteria(firstname, lastname, email);
+    }
+
+    public List<Student> searchStudentByCriteria(String firstname, String lastname, String studentgroupname, String classname) {
+        return hibernate.searchStudentByCriteria(firstname, lastname, studentgroupname, classname);
+    }
+
     public Long getCountStudentByClass(Course course) {
         return hibernate.getCountStudentByClass(course);
     }
