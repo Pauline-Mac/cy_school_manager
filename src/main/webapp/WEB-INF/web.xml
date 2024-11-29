@@ -84,6 +84,11 @@
         <servlet-name>AdminProfile</servlet-name>
         <url-pattern>/admin/profile</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminProfile</servlet-name>
+        <url-pattern>/admin/update-profile</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>AdminProfessors</servlet-name>
@@ -151,6 +156,10 @@
         <servlet-name>StudentProfile</servlet-name>
         <url-pattern>/student/profile</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentProfile</servlet-name>
+        <url-pattern>/student/update-profile</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>StudentSchedule</servlet-name>
@@ -198,6 +207,10 @@
     <servlet-mapping>
         <servlet-name>ProfessorProfile</servlet-name>
         <url-pattern>/professor/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfessorProfile</servlet-name>
+        <url-pattern>/professor/update-profile</url-pattern>
     </servlet-mapping>
 
     <servlet>

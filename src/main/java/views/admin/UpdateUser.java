@@ -1,6 +1,5 @@
 package views.admin;
 
-import com.google.api.services.gmail.Gmail;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -54,10 +53,9 @@ public class UpdateUser extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        User user = (User) request.getSession().getAttribute("update-user");
-        List<Course> courseList = (List<Course>) request.getSession().getAttribute("courseList");
-
+        try {
+            User user = (User) request.getSession().getAttribute("update-user");
+            List<Course> courseList = (List<Course>) request.getSession().getAttribute("courseList");
 
         if (!request.getParameter("first_name").isBlank())
             user.setFirstName(request.getParameter("first_name"));
@@ -68,59 +66,61 @@ public class UpdateUser extends HttpServlet {
         if (!request.getParameter("tel").isBlank())
             user.setPhone(request.getParameter("tel"));
 
-        String birthDate = request.getParameter("birth_date");
-        if (birthDate != null) {
-            LocalDate parsedDate = LocalDate.parse(birthDate);
-            user.setBirthDate(parsedDate);
-        }
+            String birthDate = request.getParameter("birth_date");
+            if (birthDate != null) {
+                LocalDate parsedDate = LocalDate.parse(birthDate);
+                user.setBirthDate(parsedDate);
+            }
 
-        HibernateInvoker hibernate = HibernateFacade.getInstance().hibernate;
-        hibernate.save(user);
+            HibernateInvoker hibernate = HibernateFacade.getInstance().hibernate;
+            hibernate.save(user);
 
-        try {
-            GMailer mailer = new GMailer();
-            mailer.sendInfoModificationConfirmation(user);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
-        if (user.getRole().equals("STUDENT")) {
-            String[] courses = request.getParameterValues("class[]");
-            boolean coursesModif = false;
-            if (courses != null) {
-            boolean courseFound = true;
-            for (String strcourse : courses) {
-                courseFound = false;
-                for (int j = 0; j < courseList.size(); j++) {
-                    Course course = courseList.get(j);
-                    if (course.getClassId() == Integer.parseInt(strcourse)) {
-                        courseList.remove(course);
-                        courseFound = true;
+            try {
+                GMailer mailer = new GMailer();
+                mailer.sendInfoModificationConfirmation(user);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            if (user.getRole().equals("STUDENT")) {
+                String[] courses = request.getParameterValues("class[]");
+
+                if (courses != null) {
+                boolean courseFound = true;
+                for (String strcourse : courses) {
+                    courseFound = false;
+                    for (int j = 0; j < courseList.size(); j++) {
+                        Course course = courseList.get(j);
+                        if (course.getClassId() == Integer.parseInt(strcourse)) {
+                            courseList.remove(course);
+                            courseFound = true;
+                        }
+                    }
+                    if (!courseFound) {
+                        Course course = (Course) HibernateFacade.getInstance().get(Course.class, Integer.parseInt(strcourse));
+                        Student student = (Student) HibernateFacade.getInstance().get(Student.class, user.getUserId().intValue());
+                        Enrollment enrollment = new Enrollment(student, course);
+
+                        HibernateFacade.getInstance().save(enrollment);
                     }
                 }
-                if (!courseFound) {
-                    Course course = (Course) HibernateFacade.getInstance().get(Course.class, Integer.parseInt(strcourse));
-                    Student student = (Student) HibernateFacade.getInstance().get(Student.class, user.getUserId().intValue());
-                    Enrollment enrollment = new Enrollment(student, course);
-                    if(!coursesModif){coursesModif = true;}
-                    HibernateFacade.getInstance().save(enrollment);
                 }
-            }
-            }
-
-            for (Course course : courseList) {
-                List<Enrollment> enrollments = hibernate.getEnrollmentByStudent((Student) user);
-                assert enrollments != null;
-                for (Enrollment enrollment : enrollments) {
-                    for (Course course1 : courseList) {
-                        if (course1.getClassName().equals(enrollment.getCourse().getClassName())) {
-                            course1.getEnrollments().remove(enrollment);
-                            if(!coursesModif){coursesModif = true;}
-                            hibernate.delete(enrollment);
+                for (Course course : courseList) {
+                    List<Enrollment> enrollments = hibernate.getEnrollmentByStudent((Student) user);
+                    assert enrollments != null;
+                    for (Enrollment enrollment : enrollments) {
+                        for (Course course1 : courseList) {
+                            if (course1.getClassName().equals(enrollment.getCourse().getClassName())) {
+                                course1.getEnrollments().remove(enrollment);
+                                hibernate.delete(enrollment);
+                            }
                         }
                     }
                 }
             }
+            request.getSession().setAttribute("success", "Ajout effectué avec succès");
+            request.getSession().removeAttribute("error");
 
             try {
                 GMailer mailer = new GMailer();
@@ -128,11 +128,12 @@ public class UpdateUser extends HttpServlet {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
 
-
+            request.getSession().setAttribute("error", "Echec lors de la modification d'un utilisateur");
+            request.getSession().removeAttribute("success");
         }
-
-
         response.sendRedirect(request.getContextPath() + "/admin/index");
 
     }
