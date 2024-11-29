@@ -60,17 +60,19 @@ public class AddUser extends HttpServlet {
 
 
         if (role.equals("student")) {
-            student = new Student(email, "password", lastname, firstname, localDate, tel, new StudentGroup(groupId));
+
+            StudentGroup studentGroup = (StudentGroup) HibernateFacade.getInstance().getAllWhere(StudentGroup.class, "studentGroupName", groupId).get(0);
+            student = new Student(email, "password", lastname, firstname, localDate, tel, studentGroup);
             hibernate.save(student);
 
 
-//            for (String className : classes) {
-//                course = (Course) hibernate.getAllWhere(Course.class, "class_id", className).get(0);
-//
-//                enrollment = new Enrollment(student, course);
-//
-//                hibernate.save(enrollment);
-//            }
+            for (String className : classes) {
+                course = (Course) hibernate.getAllWhere(Course.class, "classId", className).get(0);
+
+                enrollment = new Enrollment(student, course);
+
+                hibernate.save(enrollment);
+            }
 
         }
         else {
@@ -85,7 +87,7 @@ public class AddUser extends HttpServlet {
         }
 
 
-        resp.sendRedirect("professors");
+        resp.sendRedirect("index");
 
     }
 
