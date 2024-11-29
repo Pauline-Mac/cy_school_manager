@@ -18,13 +18,13 @@
 </head>
 <body>
 <div class="layout">
-    <%@ include file='/assets/components/admin/left_sidebar/left_sidebar.jsp' %>
+    <jsp:include page='/assets/components/admin/header/header.jsp'/>
 
     <main class="container">
-        <jsp:include page='/assets/components/admin/header/header.jsp'/>
+        <%@ include file='/assets/components/admin/left_sidebar/left_sidebar.jsp' %>
 
         <div class="inner-container">
-            <main class="users-main">
+            <div class="users-main">
                 <h1>Inscrire un élève</h1>
                 <br><br>
                 <form action="addenrollment" method="POST">
@@ -86,11 +86,11 @@
                     <p style="color: green;">${message}</p>
                 </c:if>
 
-            </main>
+            </div>
         </div>
 
-        <jsp:include page='/assets/components/footer/footer.jsp'/>
     </main>
+    <jsp:include page='/assets/components/footer/footer.jsp'/>
 
 </div>
 </body>

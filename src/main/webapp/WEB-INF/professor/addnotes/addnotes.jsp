@@ -17,12 +17,12 @@
 </head>
 <body>
 <div class="layout">
-    <%@ include file='/assets/components/professor/left_sidebar/left_sidebar.jsp' %>
+    <jsp:include page='/assets/components/professor/header/header.jsp'/>
 
     <main class="container">
-        <jsp:include page='/assets/components/professor/header/header.jsp'/>
+        <%@ include file='/assets/components/professor/left_sidebar/left_sidebar.jsp' %>
         <div class="inner-container">
-            <main class="notes-main">
+            <div class="notes-main">
                 <h1>Ajouter une  note</h1>
                 <br><br>
                 <form action="addnote" method="POST">
@@ -71,10 +71,10 @@
                     <button type="submit">Attribuer la note</button>
                 </form>
 
-            </main>
-            <jsp:include page='/assets/components/footer/footer.jsp'/>
+            </div>
         </div>
     </main>
+    <jsp:include page='/assets/components/footer/footer.jsp'/>
 </div>
 </body>
 </html>
