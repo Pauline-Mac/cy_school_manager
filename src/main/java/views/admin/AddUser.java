@@ -76,14 +76,16 @@ public class AddUser extends HttpServlet {
                 student = new Student(email, "password", lastname, firstname, localDate, tel, studentGroup);
                 hibernate.save(student);
 
+                if (classes != null && classes.length > 0) {
+                    for (String className : classes) {
+                        course = (Course) hibernate.getAllWhere(Course.class, "classId", className).get(0);
 
-                for (String className : classes) {
-                    course = (Course) hibernate.getAllWhere(Course.class, "classId", className).get(0);
+                        enrollment = new Enrollment(student, course);
 
-                    enrollment = new Enrollment(student, course);
-
-                    hibernate.save(enrollment);
+                        hibernate.save(enrollment);
+                    }
                 }
+
 
             } else {
                 professor = new Professor(email, "password", lastname, firstname, localDate, tel);
