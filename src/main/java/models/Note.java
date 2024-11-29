@@ -1,6 +1,8 @@
 package models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,6 +23,7 @@ public class Note implements HibernateEntity {
 
     @ManyToOne
     @JoinColumn(name = "enrollment_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Enrollment enrollment;
 
 
