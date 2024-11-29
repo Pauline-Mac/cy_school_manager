@@ -61,7 +61,7 @@
                         <tr>
                             <td><label for="role">Statut</label></td>
                             <td>
-                                <select name="role" id="role" class="add-user-input-select add-user-input-table" onchange="onRoleChange()">
+                                <select name="role" id="role" class="add-user-input-select add-user-input-table" disabled="disabled">
                                     <c:choose>
                                         <c:when test="${user.role=='PROFESSOR'}">
                                             <option value="professor">Professeur</option>
@@ -77,36 +77,41 @@
                             <c:when test="${user.role == 'STUDENT'}">
                                 <tr id="group-id-tr">
                                     <td><label for="group_id">Groupe</label></td>
-                                    <td><input id="group_id" name="group_id" class="add-user-input add-user-input-table" value="${user.studentGroup}"></td>
+                                    <td><input id="group_id" name="group_id" class="add-user-input add-user-input-table" value="${user.studentGroup.studentGroupName}"></td>
                                 </tr>
                             </c:when>
                         </c:choose>
 
                     </table>
 
-
-                    <div class="add-class">
-
-                        <h4>Ajouter des cours</h4>
-
-                        <div id="class-list">
-                            <c:forEach items="${courseList}" var="course" varStatus="status">
-                                <span class="class-tag">
-                                    <input type="hidden" hidden="hidden" name="class[]" value="${course.classId}">
-                                    <span class="class-id">${course.className}</span>
-                                    <span class="class-button" onclick="removeElement(this)">X</span>
-                                </span>
-                            </c:forEach>
-                        </div>
-
-                        <input type="text" id="add-class-input" class="add-user-input" oninput="classSearch()">
-
-                        <div class="class-suggestions" id="class-suggestions">
-
-                        </div>
+                    <c:choose>
+                        <c:when test="${user.role == 'STUDENT'}">
 
 
-                    </div>
+                            <div class="add-class">
+
+                                <h4>Ajouter des cours</h4>
+
+                                <div id="class-list">
+                                    <c:forEach items="${courseList}" var="course" varStatus="status">
+                                        <span class="class-tag">
+                                            <input type="hidden" hidden="hidden" name="class[]" value="${course.classId}">
+                                            <span class="class-id">${course.className}</span>
+                                            <span class="class-button" onclick="removeElement(this)">X</span>
+                                        </span>
+                                    </c:forEach>
+                                </div>
+
+
+                                <input type="text" id="add-class-input" class="add-user-input" oninput="classSearch()">
+
+                                <div class="class-suggestions" id="class-suggestions">
+
+                                </div>
+
+
+                            </c:when>
+                        </c:choose>
 
 
                     <input class="add-user-form-button add-user-input" type="submit" value="Confirmer">
