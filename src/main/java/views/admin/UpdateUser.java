@@ -118,16 +118,21 @@ public class UpdateUser extends HttpServlet {
                         }
                     }
                 }
+
+                try {
+                    if (!courseList.isEmpty()) {
+                        GMailer mailer = new GMailer();
+                        mailer.sendClassModification((Student) user);
+
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
             request.getSession().setAttribute("success", "Ajout effectué avec succès");
             request.getSession().removeAttribute("error");
 
-            try {
-                GMailer mailer = new GMailer();
-                mailer.sendClassModification((Student) user);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
 
