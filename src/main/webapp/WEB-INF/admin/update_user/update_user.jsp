@@ -1,4 +1,4 @@
-
+<jsp:directive.page contentType="text/html; charset=UTF-8" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -95,7 +95,7 @@
                                 <div id="class-list">
                                     <c:forEach items="${courseList}" var="course" varStatus="status">
                                         <span class="class-tag">
-                                            <input type="hidden" hidden="hidden" name="class[]" value="${course.classId}">
+                                            <input class="class-id-hidden" type="hidden" hidden="hidden" name="class[]" value="${course.classId}">
                                             <span class="class-id">${course.className}</span>
                                             <span class="class-button" onclick="removeElement(this)">X</span>
                                         </span>

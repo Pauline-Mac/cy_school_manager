@@ -14,9 +14,11 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
 import models.Enrollment;
+import models.HibernateEntity;
 import org.apache.commons.codec.binary.Base64;
 import models.Student;
 import models.User;
+import services.hibernate.HibernateFacade;
 
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
@@ -25,6 +27,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
@@ -91,10 +94,22 @@ public class GMailer {
 
         public void sendClassModification(Student student) throws Exception {
 
-            sendMail("Changement de votre cours",
-                    "Bonjour " +student.getFirstName()+" "+student.getLastName()+
-                            ",\n L'un de vos cours a été modifié",
-                    student.getEmail());
+            HibernateFacade hibernate = HibernateFacade.getInstance();
+            List<Enrollment> enrollments = hibernate.getEnrollmentsByStudent(student);
+            StringBuilder listEnrollments = new StringBuilder();
+            for (Enrollment enrollment1 : enrollments) {
+                listEnrollments.append("\n - ").append(enrollment1.getCourse().getClassName()).append(" avec ").append(enrollment1.getCourse().getProfessor().getFirstName()).append(" ").append(enrollment1.getCourse().getProfessor().getLastName());
+            }
+
+            String message = "Bonjour " +student.getFirstName()+" "+student.getLastName()+
+                    ", vos inscription ont été modifiés"+
+                    "\n\nVoici un récapitulatif des cours auxquels vous êtes inscrit" +
+                    "\n";
+
+            message += listEnrollments.toString();
+
+
+            sendMail("Changement de vos cours",message,student.getEmail());
         }
 
         public void sendInfoModificationConfirmation(User user) throws Exception {
@@ -102,7 +117,7 @@ public class GMailer {
             String message = "Bonjour "+ user.getFirstName()+" "+user.getLastName()+",\n"
                     +"Vos informations personnelles ont bien été modifiées avec succès.\n\n"
                     +"Voici un récapitulatif de vos informations :\n" +
-                    "Prénom : \" + user.getFirstName()\n"+
+                    "Prénom : " + user.getFirstName()+"\n"+
                     "Nom : " + user.getLastName()+"\n"+
                     "Email : " + user.getEmail()+"\n"+
                     "Date de naissance : " + user.getBirthDate()+"\n"+

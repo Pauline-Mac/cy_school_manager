@@ -9,7 +9,6 @@ import models.*;
 import services.authentication.AuthService;
 import services.hibernate.HibernateFacade;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Servlet implementation class AdminLogin
@@ -57,8 +56,8 @@ public class Login extends HttpServlet {
 				throw new Exception("Authentication failed");
 			}
 		} catch (Exception e){
-			request.setAttribute("errorMessage", "Incorrect email or password");
-			request.getRequestDispatcher("login_failed").forward(request, response);
+			request.setAttribute("errorMessage", "Email ou mot de passe incorect");
+			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/login/login.jsp").forward(request, response);
 		}
 	}
 }

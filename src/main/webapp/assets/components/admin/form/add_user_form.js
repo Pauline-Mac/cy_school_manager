@@ -1,5 +1,28 @@
 
+let classChosen = []
+
+function checkClassList() {
+
+    const container = document.getElementById('class-list');
+
+    const classList = document.getElementsByClassName("class-id-hidden");
+
+    classChosen = [];
+    for (let class_ of classList) {
+        classChosen.push(class_.value);
+    }
+
+    console.log(classChosen);
+
+}
+
+
+checkClassList();
+
 function addClass(classId, className) {
+
+    if (classChosen.includes(classId))
+        return;
 
     const inputClassId = document.getElementById("add-class-input");
     inputClassId.value = "";
@@ -16,6 +39,7 @@ function addClass(classId, className) {
     input.name = "class[]";
     input.value = classId;
     input.hidden = true;
+    input.classList.add("class-id-hidden")
 
     button.innerText = "X";
     button.classList.add("class-button");
@@ -34,6 +58,9 @@ function addClass(classId, className) {
 
 
     container.appendChild(element);
+
+    checkClassList();
+    clearSuggestions();
 
 }
 
@@ -64,20 +91,20 @@ function onRoleChange() {
 
 function classSearch() {
 
-    // if (document.getElementById("add-class-input").innerText === "") {
-    //     clearSuggestions();
-    //     return;
-    // }
+    if (document.getElementById("add-class-input").value === "") {
+        clearSuggestions();
+        return;
+    }
+
+    checkClassList();
 
     var xhr = new XMLHttpRequest();
     var url = "/cy_school_manager/class-search";
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText);
+            // console.log(xhr.responseText);
             var jsonResponse = JSON.parse(xhr.responseText);
-            // document.getElementById("response").innerHTML = jsonResponse.response;
-            console.log(jsonResponse.response);
 
             const classSuggestionDiv = document.getElementById("class-suggestions");
 
@@ -95,7 +122,8 @@ function classSearch() {
                     addClass(this.id, this.innerText);
                 });
 
-                classSuggestionDiv.appendChild(newSuggestion);
+                if (!classChosen.includes(class_.id))
+                    classSuggestionDiv.appendChild(newSuggestion);
             }
 
 
