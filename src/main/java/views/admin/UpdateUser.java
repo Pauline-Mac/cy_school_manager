@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.*;
 import services.hibernate.HibernateFacade;
 import services.hibernate.HibernateInvoker;
+import services.mailing.GMailer;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -56,14 +57,14 @@ public class UpdateUser extends HttpServlet {
             User user = (User) request.getSession().getAttribute("update-user");
             List<Course> courseList = (List<Course>) request.getSession().getAttribute("courseList");
 
-            if (!request.getParameter("first_name").isBlank())
-                user.setFirstName(request.getParameter("first_name"));
-            if (!request.getParameter("last_name").isBlank())
-                user.setLastName(request.getParameter("last_name"));
-            if (!request.getParameter("email").isBlank())
-                user.setEmail(request.getParameter("email"));
-            if (!request.getParameter("tel").isBlank())
-                user.setPhone(request.getParameter("tel"));
+        if (!request.getParameter("first_name").isBlank())
+            user.setFirstName(request.getParameter("first_name"));
+        if (!request.getParameter("last_name").isBlank())
+            user.setLastName(request.getParameter("last_name"));
+        if (!request.getParameter("email").isBlank())
+            user.setEmail(request.getParameter("email"));
+        if (!request.getParameter("tel").isBlank())
+            user.setPhone(request.getParameter("tel"));
 
             String birthDate = request.getParameter("birth_date");
             if (birthDate != null) {
@@ -73,6 +74,14 @@ public class UpdateUser extends HttpServlet {
 
             HibernateInvoker hibernate = HibernateFacade.getInstance().hibernate;
             hibernate.save(user);
+
+
+            try {
+                GMailer mailer = new GMailer();
+                mailer.sendInfoModificationConfirmation(user);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
             if (user.getRole().equals("STUDENT")) {
                 String[] courses = request.getParameterValues("class[]");
@@ -113,6 +122,12 @@ public class UpdateUser extends HttpServlet {
             request.getSession().setAttribute("success", "Ajout effectué avec succès");
             request.getSession().removeAttribute("error");
 
+            try {
+                GMailer mailer = new GMailer();
+                mailer.sendClassModification((Student) user);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         } catch (Exception e) {
             e.printStackTrace();
 

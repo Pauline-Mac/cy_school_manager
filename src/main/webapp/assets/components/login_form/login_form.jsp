@@ -20,6 +20,8 @@
         <br><br>
         <input class="button" type="submit" value="Connexion">
         <br>
-        <a class="lost-password" href="">Mot de passe oublié ?</a>
+        <c:if test="${not empty errorMessage}">
+            <p style="color: red;">${errorMessage}</p>
+        </c:if>
     </div>
 </form>
