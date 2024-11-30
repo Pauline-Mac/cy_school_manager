@@ -117,7 +117,7 @@ public class GMailer {
             String message = "Bonjour "+ user.getFirstName()+" "+user.getLastName()+",\n"
                     +"Vos informations personnelles ont bien été modifiées avec succès.\n\n"
                     +"Voici un récapitulatif de vos informations :\n" +
-                    "Prénom : \" + user.getFirstName()\n"+
+                    "Prénom : " + user.getFirstName()+"\n"+
                     "Nom : " + user.getLastName()+"\n"+
                     "Email : " + user.getEmail()+"\n"+
                     "Date de naissance : " + user.getBirthDate()+"\n"+
