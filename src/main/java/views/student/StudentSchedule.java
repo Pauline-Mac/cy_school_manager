@@ -48,10 +48,11 @@ public class StudentSchedule extends HttpServlet {
 			}
 
 			request.setAttribute("classes", courses);
-			this.getServletContext().getRequestDispatcher("/WEB-INF/student/schedule/schedule.jsp").forward(request, response);
+//			this.getServletContext().getRequestDispatcher("/WEB-INF/student/schedule/schedule.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/assets/pages/schedule/schedule.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("error", "Unable to retrieve student schedule: " + e.getMessage());
-			this.getServletContext().getRequestDispatcher("/WEB-INF/student/schedule/schedule.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/assets/pages/schedule/schedule.jsp").forward(request, response);
 		}
 	}
 
