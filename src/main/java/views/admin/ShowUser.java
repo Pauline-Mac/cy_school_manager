@@ -35,10 +35,21 @@ public class ShowUser extends HttpServlet {
 
         List<Course> courseList = new ArrayList<>();
 
-        for (HibernateEntity e : enrollmentList) {
-            Enrollment enrollment = (Enrollment) e;
-            if (enrollment.getStudent().equals(user))
-                courseList.add(enrollment.getCourse());
+        if (user.getRole().equals("STUDENT")) {
+            for (HibernateEntity e : enrollmentList) {
+                Enrollment enrollment = (Enrollment) e;
+                if (enrollment.getStudent().equals(user))
+                    courseList.add(enrollment.getCourse());
+            }
+        } else {
+
+            Professor p = (Professor) HibernateFacade.getInstance().get(Professor.class, user.getUserId().intValue());
+
+            List<Course> courses =  HibernateFacade.getInstance().getClassesByProfessor(p);
+
+            if (courses != null && !courses.isEmpty())
+                courseList.addAll(courses);
+
         }
 
         request.setAttribute("user", user);
