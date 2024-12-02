@@ -1,6 +1,9 @@
 <jsp:directive.page contentType="text/html; charset=UTF-8" />
 <header class="professor-header">
 	<a href="${pageContext.request.contextPath}/professor/index"><div class="logo"><h1>CY School Manager</h1></div></a>
+	<nav class="root-nav">
+		<a class="item" href="https://github.com/Pauline-Mac/cy_school_manager"><h2>Github</h2></a><a class="item" href="https://github.com/Pauline-Mac/cy_school_managerSpringBoot"><h2>Spring Boot</h2></a>
+	</nav>
 	<a href="${pageContext.request.contextPath}/professor/profile">
 		<div class="profile">
 			<h2>${sessionScope.user != null && sessionScope.user.firstName != null ? sessionScope.user.firstName : 'Professor CY'}</h2>
